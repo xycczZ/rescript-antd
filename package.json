@@ -1,0 +1,40 @@
+{
+  "name": "rescript-antd",
+  "version": "1.0.0",
+  "description": "Provide Rescript bindings for antd",
+  "scripts": {
+    "build": "rescript build -with-deps",
+    "clean": "rescript clean -with-deps"
+  },
+  "keywords": [
+    "rescript",
+    "bindings",
+    "antd"
+  ],
+  "author": "xycc<xycc.invoker@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "/src",
+    "/bsconfig.json"
+  ],
+  "peerDependencies": {
+    "@rescript/react": "^0.11",
+    "@ryyppy/rescript-promise": "^2.1.0",
+    "antd": "^5.1",
+    "react": "^18.2",
+    "react-dom": "^18.2",
+    "rescript": "^10.1",
+    "rescript-webapi": "^0.6.1",
+    "@ant-design/icons": "^5.0.1"
+  },
+  "devDependencies": {
+    "@rescript/react": "^0.11",
+    "@ryyppy/rescript-promise": "^2.1.0",
+    "antd": "^5.1",
+    "react": "^18.2",
+    "react-dom": "^18.2",
+    "rescript": "^10.1",
+    "rescript-webapi": "^0.6.1",
+    "@ant-design/icons": "^5.0.1"
+  }
+}

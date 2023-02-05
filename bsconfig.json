@@ -1,0 +1,25 @@
+{
+    "name": "rescript-antd",
+    "reason": {
+        "react-jsx": 3
+    },
+    "sources": [
+        {
+            "dir": "src"
+        }
+    ],
+    "namespace": "Antd",
+    "package-specs": {
+        "module": "es6",
+        "in-source": true
+    },
+    "bs-dependencies": [
+        "@rescript/react",
+        "@ryyppy/rescript-promise",
+        "rescript-webapi"
+    ],
+    "suffix": ".bs.js",
+    "warnings": {
+        "number": "-32"
+    }
+}
