@@ -1,5 +1,5 @@
 type fontWeight
-external fromInvariant: [|#normal |#light |#weight] => fontWeight = "%identity"
+external fromVariant: [|#normal |#light |#weight] => fontWeight = "%identity"
 external fromInt: int => fontWeight = "%identity"
 
 type font = {

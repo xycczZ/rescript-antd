@@ -22,7 +22,7 @@ type select = {
 
 type size
 external fromNumber: float => size = "%identity"
-external fromInvariant: [|#large |#small |#default] => size = "%identity"
+external fromVariant: [|#large |#small |#default] => size = "%identity"
 
 @react.component @module("antd")
 external make: (

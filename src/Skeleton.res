@@ -1,6 +1,6 @@
 type size
 external fromNumber: float => size = "%identity"
-external fromInvariant: [|#large |#small |#default] => size = "%identity"
+external fromVariant: [|#large |#small |#default] => size = "%identity"
 
 type avatarProps = {
     active?: bool,

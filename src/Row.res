@@ -22,7 +22,7 @@ type breakPoint = [
 ]
 type align
 external fromObj: alignObj => align = "%identity"
-external fromInvariant: alignPosition => align = "%identity"
+external fromVariant: alignPosition => align = "%identity"
 
 type gutterObj = {
     xs?: int,

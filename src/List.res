@@ -40,7 +40,7 @@ type locale = {
 external make: (
     ~children: React.element=?,
     ~bordered: bool=?,
-    ~dataSource: array<{..}>=?,
+    ~dataSource: array<'item>=?,
     ~footer: React.element=?,
     ~grid: grid=?,
     ~header: React.element=?,
@@ -49,8 +49,8 @@ external make: (
     ~loadMore: React.element=?,
     ~locale: locale=?,
     ~pagination: pagination=?,
-    ~renderItem: ({..}, int) => React.element=?,
-    ~rowKey: {..} => string=?,
+    ~renderItem: ('item, int) => React.element=?,
+    ~rowKey: 'item => string=?,
     ~size: [#default |#large |#small]=?,
     ~split: bool=?,
 ) => React.element = "List"

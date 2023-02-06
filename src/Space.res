@@ -5,7 +5,7 @@ type sizeInvariant = [
 ]
 type size
 external fromNumber: float => size = "%identity"
-external fromInvariant: sizeInvariant => size = "%identity"
+external fromVariant: sizeInvariant => size = "%identity"
 
 type direction = [#vertical |#horizontal]
 

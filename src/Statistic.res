@@ -6,7 +6,7 @@ type rec t = {
     prefixCls?: string,
 } and formatter
 external fromFalse: bool => formatter = "%identity"
-external fromInvariant: [|#number |#countdown] => formatter = "%identity"
+external fromVariant: [|#number |#countdown] => formatter = "%identity"
 external fromFn: ((string, t) => React.element) => formatter = "%identity"
 
 @react.component @module("antd")

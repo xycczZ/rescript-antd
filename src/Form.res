@@ -38,7 +38,7 @@ type scrollAction = {
     left: float,
 }
 type behavior
-external fromInvariant: [| #always| #"if-needed"] => behavior = "%identity"
+external fromVariant: [| #always| #"if-needed"] => behavior = "%identity"
 external fromFn: (array<scrollAction> => 'a) => behavior = "%identity"
 
 type scrollOptions = {
@@ -146,7 +146,7 @@ external fromComponent: React.element => componentOption = "%identity"
 type requiredMark
 type requiredMarkOption = @string[|#optional]
 external fromTrue: bool => requiredMark = "%identity"
-external fromInvariant: requiredMarkOption => requiredMark = "%identity"
+external fromVariant: requiredMarkOption => requiredMark = "%identity"
 
 type errorField = {
     name: array<string>,
@@ -166,7 +166,7 @@ external make: (
     ~component: componentOption=?,
     ~fields: array<fieldData<{..}>>=?,
     ~form: formInstance<{..}>=?,
-    ~initialValues: {..}=?,
+    ~initialValues: 'a=?,
     ~labelAlign: [
         |#left
         |#right
@@ -250,7 +250,7 @@ module Item = {
     type validateFirstOption
     type validateFirstOptionInvariant = @string[|#parallel]
     external fromFalse: bool => validateFirstOption = "%identity"
-    external fromInvariant: validateFirstOptionInvariant => validateFirstOption = "%identity"
+    external fromVariant: validateFirstOptionInvariant => validateFirstOption = "%identity"
 
     @react.component @module("antd") @scope("Form")
     external make: (
@@ -318,7 +318,7 @@ module List = {
         ~prefixCls: string=?,
         ~name: NamePath.t,
         ~rules: array<rule>=?,
-        ~initialValue: array<{..}>=?,
+        ~initialValue: array<'a>=?,
     ) => React.element = "List"
 }
 

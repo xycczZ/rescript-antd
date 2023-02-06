@@ -1,3 +1,12 @@
+type t = {
+    delay?: int,
+    indicator?: React.element,
+    size?: [#small |#default |#large],
+    spinning?: bool,
+    tip?: React.element,
+    wrapperClassName?: string,
+}
+
 @react.component @module("antd")
 external make: (
     ~children: React.element=?,

@@ -5,7 +5,7 @@ external make: (
     ~checked: bool=?,
     ~defaultChecked: bool=?,
     ~disabled: bool=?,
-    ~value: {..}
+    ~value: 'a
 ) => React.element = "Radio"
 
 module Button = {
@@ -16,7 +16,7 @@ module Button = {
         ~checked: bool=?,
         ~defaultChecked: bool=?,
         ~disabled: bool=?,
-        ~value: {..}
+        ~value: 'a
     ) => React.element = "Button"
 }
 
@@ -62,9 +62,9 @@ module Group = {
     @react.component @module("antd") @scope("Radio")
     external make: (
         ~children: React.element,
-        ~value: {..},
+        ~value: 'a,
         ~buttonStyle: ReactDOM.style=?,
-        ~defaultValue: {..}=?,
+        ~defaultValue: 'a=?,
         ~disabled: bool=?,
         ~name: string=?,
         ~options: array<options>=?,

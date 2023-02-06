@@ -12,11 +12,11 @@ type route = {
 @react.component @module("antd")
 external make: (
     ~children: React.element=?,
-    ~itemRender: (route, {..}, array<route>, array<string>) => React.element=?,
+    ~itemRender: (route, 'a, array<route>, array<string>) => React.element=?,
     ~style: ReactDOM.style=?,
     ~className: string=?,
     ~separator: React.element=?,
-    ~params: {..}=?,
+    ~params: 'a=?,
     ~routes: array<route>=?,
     ~prefixCls: string=?,
 ) => React.element = "Breadcrumb"
