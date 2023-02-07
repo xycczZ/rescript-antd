@@ -81,7 +81,7 @@ type instance = {
     loading: param => Promise.t<bool>,
 }
 @module("antd") @scope("notification") @val
-external useNotification: (~config: notificationConfig=?) => (instance, React.element) = "useNotification"
+external useNotification: (~config: notificationConfig=?, ()) => (instance, React.element) = "useNotification"
 
 @module("antd") @scope("notification") @val
-external useInternalNotification: (~config: holderProps=?) => (instance, React.element) = "useNuseInternalNotificationotification"
+external useInternalNotification: (~config: holderProps=?, ()) => (instance, React.element) = "useNuseInternalNotificationotification"

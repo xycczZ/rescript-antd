@@ -83,19 +83,19 @@ type modalFunc<'a> = {
 }
 
 @module("antd") @scope("Modal") @val
-external info: props<{..}> => modalFunc<{..}> = "info"
+external info: props<'a> => modalFunc<{..}> = "info"
 
 @module("antd") @scope("Modal") @val
-external success: props<{..}> => modalFunc<{..}> = "success"
+external success: props<'a> => modalFunc<{..}> = "success"
 
 @module("antd") @scope("Modal") @val
-external error: props<{..}> => modalFunc<{..}> = "error"
+external error: props<'a> => modalFunc<{..}> = "error"
 
 @module("antd") @scope("Modal") @val
-external warning: props<{..}> => modalFunc<{..}> = "warning"
+external warning: props<'a> => modalFunc<{..}> = "warning"
 
 @module("antd") @scope("Modal") @val
-external confirm: props<{..}> => modalFunc<{..}> = "confirm"
+external confirm: props<'a> => modalFunc<{..}> = "confirm"
 
 @module("antd") @scope("Modal") @val
 external destroyAll: () => () = "destroyAll"
@@ -108,4 +108,4 @@ type instance<'a> = {
     loading: props<'a> => modalFunc<'a>,
 }
 @module("antd") @scope("Modal") @val
-external useModal: () => (instance<{..}>, React.element) = "useModal"
+external useModal: () => (instance<'a>, React.element) = "useModal"

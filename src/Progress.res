@@ -14,6 +14,21 @@ external fromStr: string => strokeColor = "%identity"
 external fromArr: array<string> => strokeColor = "%identity"
 external fromConfig: strokeColorConfig => strokeColor = "%identity"
 
+type inlineT = {
+    format?: (float, float) => React.element,
+    percent?: float,
+    showInfo?: bool,
+    status?: [|#success |#"exception" |#normal |#active],
+    strokeLinecap?: [|#round |#butt |#square],
+    success?: success,
+    trailColor?: string,
+    \"type"?: [|#line |#circle |#dashboard],
+
+    steps?: int,
+    strokeColor?: strokeColor,
+    strokeWidth?: float,
+}
+
 @react.component @module("antd")
 external make: (
     ~format: (float, float) => React.element=?,

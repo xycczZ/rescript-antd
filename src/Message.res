@@ -18,25 +18,25 @@ external fromEl: React.element => jointContent = "%identity"
 external fromArgs: argsProps => jointContent = "%identity"
 
 @module("antd") @scope("message") @val
-external info: (jointContent, option<int>, option<() => ()>) => Promise.t<bool> = "info"
+external info: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool> = "info"
 
 @module("antd") @scope("message") @val
-external success: (jointContent, option<int>, option<() => ()>) => Promise.t<bool> = "success"
+external success: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool> = "success"
 
 @module("antd") @scope("message") @val
-external error: (jointContent, option<int>, option<() => ()>) => Promise.t<bool> = "error"
+external error: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool> = "error"
 
 @module("antd") @scope("message") @val
-external warning: (jointContent, option<int>, option<() => ()>) => Promise.t<bool> = "warning"
+external warning: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool> = "warning"
 
 @module("antd") @scope("message") @val
-external loading: (jointContent, option<int>, option<() => ()>) => Promise.t<bool> = "loading"
+external loading: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool> = "loading"
 
 @module("antd") @scope("message") @val
 external start: argsProps => Promise.t<bool> = "open"
 
 @module("antd") @scope("message") @val
-external destroy: (~key: string=?) => () = "destroy"
+external destroy: (~key: string=?, ()) => () = "destroy"
 
 type configOptions = {
     top?: float,
@@ -51,15 +51,15 @@ type configOptions = {
 external config: configOptions => () = "config"
 
 type instance = {
-    info: (jointContent, option<int>, option<() => ()>) => Promise.t<bool>,
-    infsuccesso: (jointContent, option<int>, option<() => ()>) => Promise.t<bool>,
-    error: (jointContent, option<int>, option<() => ()>) => Promise.t<bool>,
-    warning: (jointContent, option<int>, option<() => ()>) => Promise.t<bool>,
-    loading: (jointContent, option<int>, option<() => ()>) => Promise.t<bool>,
+    info: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool>,
+    success: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool>,
+    error: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool>,
+    warning: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool>,
+    loading: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool>,
 }
 
 @module("antd") @scope("message") @val
-external useMessage: (~config: configOptions=?) => (instance, React.element) = "useMessage"
+external useMessage: (~config: configOptions=?, ()) => (instance, React.element) = "useMessage"
 
 type holderProps = {
     top?: float,
@@ -72,4 +72,4 @@ type holderProps = {
     onAllRemoved?: () => ()
 }
 @module("antd") @scope("message") @val
-external useInternalMessage: (~config: holderProps=?) => (instance, React.element) = "useInternalMessage"
+external useInternalMessage: (~config: holderProps=?, ()) => (instance, React.element) = "useInternalMessage"

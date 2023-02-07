@@ -20,6 +20,6 @@
     ],
     "suffix": ".bs.js",
     "warnings": {
-        "number": "-32"
+        "number": "-30-32"
     }
 }
