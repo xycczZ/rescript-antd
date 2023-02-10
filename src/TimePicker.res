@@ -94,7 +94,7 @@ module RangePicker = {
     ~presets: array<DatePicker.presets<'a>>=?,
     ~renderExtraFooter: unit => React.element=?,
     ~separator: React.element=?,
-    ~showTime: DatePicker.showTime=?,
+    ~showTime: DatePicker.ShowTime.t=?,
     ~onCalendarChange: (DatePicker.RangePicker.rangeValue<'a>, (string, string), DatePicker.RangePicker.rangeInfo) => unit=?,
     ~onChange: (DatePicker.RangePicker.rangeValue<'a>, (string, string)) => unit=?,
     ~order: bool=?,

@@ -3,9 +3,11 @@ type autoSizeConfig = {
     maxRows: int
 }
 
-type autoSize
-external fromBool: bool => autoSize = "%identity"
-external fromConfig: autoSizeConfig => autoSize = "%identity"
+module AutoSize = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromConfig: autoSizeConfig => t = "%identity"
+}
 
 type optionProps = {
     value?: string,
@@ -16,9 +18,11 @@ type optionProps = {
     style?: ReactDOM.style,
 }
 
-type filterOption
-external fromBool: bool => filterOption = "%identity"
-external fromProps: optionProps => filterOption = "%identity"
+module FilterOption = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromProps: optionProps => t = "%identity"
+}
 
 type dataDrivenOptionProps = {
     value?: string,
@@ -37,9 +41,9 @@ type sizeInfo = {
 
 type rec t = {
     autoFocus?: bool,
-    autoSize?: autoSize,
+    autoSize?: AutoSize.t,
     defaultValue?: string,
-    filterOption?: filterOption,
+    filterOption?: FilterOption.t,
     getPopupContainer?: () => Webapi.Dom.HtmlElement.t,
     notFoundContent?: React.element,
     placement?: [#top |#bottom],
@@ -66,9 +70,9 @@ type rec t = {
 @react.component @module("antd")
 external make: (
     ~autoFocus: bool=?,
-    ~autoSize: autoSize=?,
+    ~autoSize: AutoSize.t=?,
     ~defaultValue: string=?,
-    ~filterOption: filterOption=?,
+    ~filterOption: FilterOption.t=?,
     ~getPopupContainer: () => Webapi.Dom.HtmlElement.t=?,
     ~notFoundContent: React.element=?,
     ~placement: [#top |#bottom]=?,

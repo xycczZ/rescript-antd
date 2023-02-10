@@ -28,28 +28,32 @@ type scrollLogicalPosition = [
     | #nearest
 ]
 
-type boundary
-external fromEl: Webapi.Dom.Element.t => boundary = "%identity"
-external fromElFn: (Webapi.Dom.Element.t => bool) => boundary = "%identity"
+module Boundary = {
+    type t
+    external fromEl: Webapi.Dom.Element.t => t = "%identity"
+    external fromElFn: (Webapi.Dom.Element.t => bool) => t = "%identity"
+}
 
 type scrollAction = {
     el: Webapi.Dom.Element.t,
     top: float,
     left: float,
 }
-type behavior
-external fromVariant: [| #always| #"if-needed"] => behavior = "%identity"
-external fromFn: (array<scrollAction> => 'a) => behavior = "%identity"
+module Behavior = {
+    type t
+    external fromVariant: [| #always| #"if-needed"] => t = "%identity"
+    external fromFn: (array<scrollAction> => 'a) => t = "%identity"
+}
 
 type scrollOptions = {
-    behavior?: behavior,
+    behavior?: Behavior.t,
     block?: scrollLogicalPosition,
     inline?: scrollLogicalPosition,
     scrollMode?: [
         | #always
         | #"if-needed"
     ],
-    boundary?: boundary,
+    boundary?: Boundary.t,
     skipOverflowHiddenElements?: bool
 }
 
@@ -134,19 +138,25 @@ module ValidateMessage = {
     }
 }
 
-type scrollFirstErrorOption
-external fromFalse: bool => scrollFirstErrorOption = "%identity"
-external fromScrollOptions: scrollOptions => scrollFirstErrorOption = "%identity"
+module ScrollFirstErrorOption = {
+    type t
+    external fromFalse: bool => t = "%identity"
+    external fromScrollOptions: scrollOptions => t = "%identity"
+}
 
-type componentOption
-external fromFalse: bool => componentOption = "%identity"
-external fromStr: string => componentOption = "%identity"
-external fromComponent: React.element => componentOption = "%identity"
+module ComponentOption = {
+    type t
+    external fromFalse: bool => t = "%identity"
+    external fromStr: string => t = "%identity"
+    external fromComponent: React.element => t = "%identity"
+}
 
-type requiredMark
 type requiredMarkOption = @string[|#optional]
-external fromTrue: bool => requiredMark = "%identity"
-external fromVariant: requiredMarkOption => requiredMark = "%identity"
+module RequiredMark = {
+    type t
+    external fromTrue: bool => t = "%identity"
+    external fromVariant: requiredMarkOption => t = "%identity"
+}
 
 type errorField = {
     name: array<string>,
@@ -164,7 +174,7 @@ external make: (
     ~children: React.element=?,
     ~colon: bool=?, // true
     ~disabled: bool=?, // false,
-    ~component: componentOption=?,
+    ~component: ComponentOption.t=?,
     ~fields: array<fieldData<{..}>>=?,
     ~form: formInstance<{..}>=?,
     ~initialValues: 'a=?,
@@ -173,7 +183,7 @@ external make: (
         |#right
     ]=?,
     ~labelWrap: bool=?,
-    ~labelCol: {..}=?,
+    ~labelCol: Col.t=?,
     ~layout: [
         | #horizontal
         | #vertical
@@ -181,8 +191,8 @@ external make: (
     ]=?,
     ~name: string=?,
     ~preserve: bool=?,
-    ~requiredMark: requiredMark=?,
-    ~scrollToFirstError: scrollFirstErrorOption=?,
+    ~requiredMark: RequiredMark.t=?,
+    ~scrollToFirstError: ScrollFirstErrorOption.t=?,
     ~size: [
         | #small
         | #middle
@@ -190,7 +200,7 @@ external make: (
     ]=?,
     ~validateMessages: ValidateMessage.t=?,
     ~validateTrigger: array<string>=?,
-    ~wrapperCol: {..}=?,
+    ~wrapperCol: Col.t=?,
     ~onFieldsChange: (array<fieldData<{..}>>, array<fieldData<{..}>>) => ()=?, // changedFields => allFields => ()
     ~onFinish: {..} => ()=?, // values => ()
     // {values, errorFields, outOfDate} => ()
@@ -214,11 +224,13 @@ type types = [
     | #hex
 ]
 
-type rule
-type ruleConfig<'a> = {
-    defaultField?: rule,
+
+module Rule = {
+    type t
+    type ruleConfig<'a> = {
+    defaultField?: t,
     enum?: array<'a>,
-    fields?: Js.Dict.t<rule>,
+    fields?: Js.Dict.t<t>,
     len?: int,
     max?: int,
     message?: string,
@@ -228,12 +240,13 @@ type ruleConfig<'a> = {
     transform?: 'a => 'a,
     \"type"?: types,
     validateTrigger?: array<string>,
-    validator?: (rule, 'a) => Promise.t<bool>,
+    validator?: (t, 'a) => Promise.t<bool>,
     warningOnly?: bool,
     whitespace?: bool
 }
-external fromRuleConfig: ruleConfig<'a> => rule = "%identity"
-external fromFunc: (formInstance<'a> => ruleConfig<'a>) => rule = "%identity"
+    external fromRuleConfig: ruleConfig<'a> => t = "%identity"
+    external fromFunc: (formInstance<'a> => ruleConfig<'a>) => t = "%identity"
+}
 
 type validateStatuses = [
     | #success
@@ -244,14 +257,18 @@ type validateStatuses = [
 ]
 
 module Item = {
-    type shouldUpdateOption
-    external fromBool: bool => shouldUpdateOption = "%identity"
-    external fromFunc: (('a, 'a) => bool) => shouldUpdateOption = "%identity"
+    module ShouldUpdateOption = {
+        type t
+        external fromBool: bool => t = "%identity"
+        external fromFunc: (('a, 'a) => bool) => t = "%identity"
+    }
 
-    type validateFirstOption
-    type validateFirstOptionInvariant = @string[|#parallel]
-    external fromFalse: bool => validateFirstOption = "%identity"
-    external fromVariant: validateFirstOptionInvariant => validateFirstOption = "%identity"
+    module ValidateFirstOption = {
+        type t
+        type validateFirstOptionInvariant = @string[|#parallel]
+        external fromFalse: bool => t = "%identity"
+        external fromVariant: validateFirstOptionInvariant => t = "%identity"
+    }
 
     @react.component @module("antd") @scope("Form")
     external make: (
@@ -272,22 +289,22 @@ module Item = {
             | #left
             | #right
         ]=?,
-        ~labelCol: {..}=?,
+        ~labelCol: Col.t=?,
         ~messageVariables: Js.Dict.t<string> = ?,
         ~name: NamePath.t=?,
         ~normalize: ({..}, {..}, Js.Dict.t<{..}>) => {..}=?,
         ~noStyle: bool=?,
         ~preserve: bool=?,
         ~required: bool=?,
-        ~rules: array<rule>=?,
-        ~shouldUpdate: shouldUpdateOption=?,
+        ~rules: array<Rule.t>=?,
+        ~shouldUpdate: ShouldUpdateOption.t=?,
         ~tooltip: React.element=?,
         ~trigger: string=?,
-        ~validateFirst: validateFirstOption=?,
+        ~validateFirst: ValidateFirstOption.t=?,
         ~validateStatus: validateStatuses=?,
         ~validateTrigger: array<string>=?,
         ~valuePropName: string=?,
-        ~wrapperCol: {..}=?,
+        ~wrapperCol: Col.t=?,
     ) => React.element = "Item"
 }
 
@@ -319,7 +336,7 @@ module List = {
         ~children: (array<formListFieldData>, formListOperation<{..}>, meta) => React.element,
         ~prefixCls: string=?,
         ~name: NamePath.t,
-        ~rules: array<rule>=?,
+        ~rules: array<Rule.t>=?,
         ~initialValue: array<'a>=?,
         ~className: string=?,
     ) => React.element = "List"

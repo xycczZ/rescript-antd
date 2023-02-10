@@ -4,12 +4,14 @@ type htmlButtonType = [
     | #button
 ]
 
-type loading
 type loadingConfig = {
     delay: float
 }
-external fromBool: bool => loading = "%identity"
-external fromObj: loadingConfig => loading = "%identity"
+module Loading = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromObj: loadingConfig => t = "%identity"
+}
 
 type size = [
     | #large
@@ -31,7 +33,7 @@ module ButtonProps = {
         href?: string,
         htmlType?: htmlButtonType,
         icon?: React.element,
-        loading?: loading,
+        loading?: Loading.t,
         shape?: [
             | #default
             | #circle
@@ -52,7 +54,7 @@ module ButtonProps = {
         ~href: option<string>=?,
         ~htmlType: option<htmlButtonType>=?,
         ~icon: option<React.element>=?,
-        ~loading: option<loading>=?,
+        ~loading: option<Loading.t>=?,
         ~shape: option<[
             | #default
             | #circle
@@ -97,7 +99,7 @@ external make: (
         ~href: string=?,
         ~htmlType: htmlButtonType=?,
         ~icon: React.element=?,
-        ~loading: loading=?,
+        ~loading: Loading.t=?,
         ~shape: [
             | #default
             | #circle

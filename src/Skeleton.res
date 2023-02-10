@@ -1,48 +1,59 @@
-type size
-external fromNumber: float => size = "%identity"
-external fromVariant: [|#large |#small |#default] => size = "%identity"
+module Size = {
+    type t
+    external fromNumber: float => t = "%identity"
+    external fromVariant: [|#large |#small |#default] => t = "%identity"
+}
 
 type avatarProps = {
     active?: bool,
     shape?: [|#circle |#square],
-    size?: size
+    size?: Size.t
 }
-type avatar
-external fromBool: bool => avatar = "%identity"
-external fromProp: avatarProps => avatar = "%identity"
+
+module AvatarType = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromProp: avatarProps => t = "%identity"
+}
 
 type paragraphProps = {
     rows?: int,
     width?: array<string>
 }
-type paragraph
-external fromBool: bool => paragraph = "%identity"
-external fromProp: paragraphProps => paragraph = "%identity"
+
+module Paragraph = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromProp: paragraphProps => t = "%identity"
+}
 
 type titleProps = {
     width?: string,
 }
-type title
-external fromBool: bool => title = "%identity"
-external fromProp: titleProps => title = "%identity"
+
+module Title = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromProp: titleProps => t = "%identity"
+}
 
 @react.component @module("antd")
 external make: (
     ~className: string=?,
     ~children: React.element=?,
     ~active: bool=?,
-    ~avatar: avatar=?,
+    ~avatar: AvatarType.t=?,
     ~loading: bool=?,
-    ~paragraph: paragraph=?,
+    ~paragraph: Paragraph.t=?,
     ~round: bool=?,
-    ~title: title=?
+    ~title: Title.t=?
 ) => React.element = "Skeleton"
 
 type element = {
     prefixCls?: string,
     className?: string,
     style?: ReactDOM.style,
-    size?: size,
+    size?: Size.t,
     shape?: [#circle | #square | #round | #default],
     active?: bool,
 }
@@ -68,7 +79,7 @@ module Avatar = {
         ~prefixCls: string=?,
         ~className: string=?,
         ~style: ReactDOM.style=?,
-        ~size: size=?,
+        ~size: Size.t=?,
         ~shape: [#circle | #square]=?,
         ~active: bool=?,
     ) => React.element = "Avatar"
@@ -95,7 +106,7 @@ module Image = {
         ~prefixCls: string=?,
         ~className: string=?,
         ~style: ReactDOM.style=?,
-        ~size: size=?,
+        ~size: Size.t=?,
         ~shape: [#circle | #square | #round | #default]=?,
         ~active: bool=?,
     ) => React.element = "Avatar"
@@ -108,7 +119,7 @@ module Node = {
         ~prefixCls: string=?,
         ~className: string=?,
         ~style: ReactDOM.style=?,
-        ~size: size=?,
+        ~size: Size.t=?,
         ~shape: [#circle | #square | #round | #default]=?,
         ~active: bool=?,
         ~fullSize: bool=?,

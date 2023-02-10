@@ -1,11 +1,13 @@
-type fontWeight
-external fromVariant: [|#normal |#light |#weight] => fontWeight = "%identity"
-external fromInt: int => fontWeight = "%identity"
+module FontWeight = {
+    type t
+    external fromVariant: [|#normal |#light |#weight] => t = "%identity"
+    external fromInt: int => t = "%identity"
+}
 
 type font = {
     color?: string,
     fontSize?: int,
-    fontWeight?: fontWeight,
+    fontWeight?: FontWeight.t,
     fontFamily?: string,
     fontStyle?: [|#none |#normal |#italic |#oblique]
 }

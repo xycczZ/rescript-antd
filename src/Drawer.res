@@ -1,15 +1,19 @@
-type container
-external fromStr: string => container = "%identity"
-external fromFalse: bool => container = "%identity"
-external fromEl: React.element => container = "%identity"
-external fromElFn: (() => React.element) => container = "%identity"
+module Container = {
+    type t
+    external fromStr: string => t = "%identity"
+    external fromFalse: bool => t = "%identity"
+    external fromEl: React.element => t = "%identity"
+    external fromElFn: (() => React.element) => t = "%identity"
+}
 
 type pushConfig = {
     distance: string
 }
-type push
-external fromBool: bool => push = "%identity"
-external fromObj: pushConfig => push = "%identity"
+module Push = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromObj: pushConfig => t = "%identity"
+}
 
 @react.component @module("antd")
 external make: (
@@ -19,7 +23,7 @@ external make: (
     ~autoFocus: bool=?,
     ~afterOpenChange: ReactEvent.Synthetic.t => ()=?,
     ~destroyOnClose: bool=?,
-    ~getContainer: container=?,
+    ~getContainer: Container.t=?,
     ~bodyStyle: ReactDOM.style=?,
     ~className: string=?,
     ~closable: bool=?,
@@ -36,7 +40,7 @@ external make: (
     ~maskClosable: bool=?,
     ~maskStyle: ReactDOM.style=?,
     ~placement: [#top |#right |#bottom |#left]=?,
-    ~push: push=?,
+    ~push: Push.t=?,
     ~rootClassName: string=?,
     ~rootStyle: ReactDOM.style=?,
     ~size: [#default |#large]=?,

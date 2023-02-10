@@ -1,10 +1,12 @@
-type flexType
-external fromInt: int => flexType = "%identity"
-external fromStr: string => flexType = "%identity"
-external fromOption: [|#none |#auto] => flexType = "%identity"
+module FlexType = {
+    type t
+    external fromInt: int => t = "%identity"
+    external fromStr: string => t = "%identity"
+    external fromOption: [|#none |#auto] => t = "%identity"
+}
 
 type colSizeObj = {
-    flex?: flexType,
+    flex?: FlexType.t,
     span?: string,
     order?: string,
     offset?: string,
@@ -12,26 +14,31 @@ type colSizeObj = {
     pull?: string,
 }
 
-type colSize
-external fromInt: int => colSize = "%identity"
-external fromStr: string => colSize = "%identity"
-external fromObj: colSizeObj => colSize = "%identity"
+module ColSize = {
+    type t
+    external fromInt: int => t = "%identity"
+    external fromStr: string => t = "%identity"
+    external fromObj: colSizeObj => t = "%identity"
+}
+
+type t = {
+    flex?: string,
+    offset?: int,
+    order?: int,
+    pull?: int,
+    push?: int,
+    span?: int,
+    xs?: ColSize.t,
+    sm?: ColSize.t,
+    md?: ColSize.t,
+    lg?: ColSize.t,
+    xl?: ColSize.t,
+    xxl?: ColSize.t,
+
+    children?: React.element,
+    className?: string,
+    prefixCls?: string,
+}
 
 @react.component @module("antd")
-external make: (
-    ~className: string=?,
-    ~children: React.element=?,
-    ~flex: string=?,
-    ~offset: int=?,
-    ~order: int=?,
-    ~pull: int=?,
-    ~push: int=?,
-    ~span: int=?,
-    ~xs: colSize=?,
-    ~sm: colSize=?,
-    ~md: colSize=?,
-    ~lg: colSize=?,
-    ~xl: colSize=?,
-    ~xxl: colSize=?,
-    ~prefixCls: string=?,
-) => React.element = "Col"
+external make: React.component<t> = "Col"

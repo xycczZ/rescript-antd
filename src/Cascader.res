@@ -6,9 +6,11 @@ type rec optionType = {
     disabled?: bool,
 }
 
-type maxTagCount
-external fromInt: int => maxTagCount = "%identity"
-external fromVariant: [#responsive] => maxTagCount = "%identity"
+module MaxTagCount = {
+    type t
+    external fromInt: int => t = "%identity"
+    external fromVariant: [#responsive] => t = "%identity"
+}
 
 type displayValueType = {
     key?: string,
@@ -18,9 +20,11 @@ type displayValueType = {
     disabled?: bool,
 }
 
-type maxTagPlaceholder
-external fromDisplayArr: array<displayValueType> => maxTagPlaceholder = "%identity"
-external fromEl: React.element => maxTagPlaceholder = "%identity"
+module MaxTagPlaceholder = {
+    type t
+    external fromDisplayArr: array<displayValueType> => t = "%identity"
+    external fromEl: React.element => t = "%identity"
+}
 
 type rec options = {
     value: string,
@@ -30,20 +34,25 @@ type rec options = {
     isLeaf?: bool,
 }
 
-type numberOrFalse
-external fromNumber: float => numberOrFalse = "%identity"
-external fromFalse: bool => numberOrFalse = "%identity"
+module NumberOrFalse = {
+    type t
+    external fromNumber: float => t = "%identity"
+    external fromFalse: bool => t = "%identity"
+}
 
 type showSearchConfig = {
     filter?: (string, array<optionType>, Tree.fieldNames) => bool,
     render?: (string, array<optionType>, string, Tree.fieldNames) => React.element,
     sort?: (array<optionType>, array<optionType>, string, Tree.fieldNames) => int,
     matchInputWidth?: bool,
-    limit?: numberOrFalse
+    limit?: NumberOrFalse.t
 }
-type showSearch
-external fromBool: bool => showSearch = "%identity"
-external fromConfig: showSearchConfig => showSearch = "%identity"
+
+module ShowSearch = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromConfig: showSearchConfig => t = "%identity"
+}
 
 @react.component @module("antd")
 external make: (
@@ -64,14 +73,14 @@ external make: (
     ~fieldNames: Tree.fieldNames=?,
     ~getPopupContainer: () => Dom.htmlElement,
     ~loadData: array<optionType> => ()=?,
-    ~maxTagCount: maxTagCount=?,
-    ~maxTagPlaceholder: maxTagPlaceholder=?,
+    ~maxTagCount: MaxTagCount.t=?,
+    ~maxTagPlaceholder: MaxTagPlaceholder.t=?,
     ~notFoundContent: string=?,
     ~\"open": bool=?,
     ~options: array<options>=?,
     ~placeholder: string=?,
     ~placement: [#bottomLeft |#bottomRight |#topLeft |#topRight]=?,
-    ~showSearch: showSearch=?,
+    ~showSearch: ShowSearch.t=?,
     ~size: [#large |#middle |#small]=?,
     ~status: [#error |#warning]=?,
     ~style: ReactDOM.style=?,

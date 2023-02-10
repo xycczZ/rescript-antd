@@ -28,10 +28,13 @@ module Group = {
         value: string,
         disabled?: bool
     }
-    type options
-    external fromNumber: float => options = "%identity"
-    external fromString: string => options = "%identity"
-    external fromConfig: optionConfig => options = "%identity"
+
+    module Options = {
+        type t
+        external fromNumber: float => t = "%identity"
+        external fromString: string => t = "%identity"
+        external fromConfig: optionConfig => t = "%identity"
+    }
 
     type rec target = {
         checked: bool,
@@ -70,7 +73,7 @@ module Group = {
         ~defaultValue: 'a=?,
         ~disabled: bool=?,
         ~name: string=?,
-        ~options: array<options>=?,
+        ~options: array<Options.t>=?,
         ~optionType: [#default |#button]=?,
         ~size: [#large |#middle |#small]=?,
         ~onChange: changeEvent => ()=?,

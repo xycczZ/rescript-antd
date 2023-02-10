@@ -3,9 +3,12 @@ type sizeInvariant = [
     |#middle
     |#large
 ]
-type size
-external fromNumber: float => size = "%identity"
-external fromVariant: sizeInvariant => size = "%identity"
+
+module Size = {
+    type t
+    external fromNumber: float => t = "%identity"
+    external fromVariant: sizeInvariant => t = "%identity"
+}
 
 type direction = [#vertical |#horizontal]
 
@@ -15,7 +18,7 @@ external make: (
     ~children: React.element=?,
     ~align: [#start |#end |#center |#baseline]=?,
     ~direction: direction=?,
-    ~size: array<size>=?,
+    ~size: array<Size.t>=?,
 ) => React.element = "Space"
 
 

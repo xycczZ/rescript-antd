@@ -2,9 +2,12 @@ type animatedConfig = {
     inkBar: bool,
     tabPane: bool,
 }
-type animated
-external fromBool: bool => animated = "%identity"
-external fromConfig: animatedConfig => animated = "%identity"
+
+module Animated = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromConfig: animatedConfig => t = "%identity"
+}
 
 type editableConfigInfo = {
     key?: string,
@@ -27,9 +30,12 @@ type tabBarExtraContentConfig = {
     left?: React.element,
     right?: React.element
 }
-type tabBarExtraContent
-external fromEl: React.element => tabBarExtraContent = "%identity"
-external fromConfig: tabBarExtraContentConfig => tabBarExtraContent = "%identity"
+
+module TabBarExtraContent = {
+    type t
+    external fromEl: React.element => t = "%identity"
+    external fromConfig: tabBarExtraContentConfig => t = "%identity"
+}
 
 type tabBarProps = {
     id: string,
@@ -45,7 +51,7 @@ type tabBarProps = {
     tabBarGutter: int,
     onTabClick: (string, ReactEvent.Synthetic.t) => (),
     onTabScroll: ([|#left |#right |#top |#bottom]) => (),
-    extra: tabBarExtraContent,
+    extra: TabBarExtraContent.t,
     style: ReactDOM.style,
     panes: ReactDOM.style,
 }
@@ -75,7 +81,7 @@ type item = {
 type t = {
     activeKey?: string,
     addIcon?: React.element,
-    animated?: animated,
+    animated?: Animated.t,
     centered?: bool,
     defaultActiveKey?: string,
     hideAdd?: bool,
@@ -84,7 +90,7 @@ type t = {
     popupClassName?: string,
     renderTabBar?: (tabBarProps, React.element) => React.element,
     size?: [#large |#middle |#small],
-    tabBarExtraContent?: tabBarExtraContent,
+    tabBarExtraContent?: TabBarExtraContent.t,
     tabBarGutter?: int,
     tabBarStyle?: ReactDOM.style,
     tabPosition?: [#top |#right |#bottom |#left],
@@ -101,7 +107,7 @@ external make: (
     ~className: string=?,
     ~activeKey: string=?,
     ~addIcon: React.element=?,
-    ~animated: animated=?,
+    ~animated: Animated.t=?,
     ~centered: bool=?,
     ~defaultActiveKey: string=?,
     ~hideAdd: bool=?,
@@ -110,7 +116,7 @@ external make: (
     ~popupClassName: string=?,
     ~renderTabBar: (tabBarProps, React.element) => React.element=?,
     ~size: [#large |#middle |#small]=?,
-    ~tabBarExtraContent: tabBarExtraContent=?,
+    ~tabBarExtraContent: TabBarExtraContent.t=?,
     ~tabBarGutter: int=?,
     ~tabBarStyle: ReactDOM.style=?,
     ~tabPosition: [#top |#right |#bottom |#left]=?,

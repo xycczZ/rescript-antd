@@ -20,10 +20,12 @@ external make: (
 ) => React.element = "Checkbox"
 
 module Group = {
-    type optionValue
-    external fromBool: bool => optionValue = "%identity"
-    external fromStr: string => optionValue = "%identity"
-    external fromNumber: float => optionValue = "%identity"
+    module OptionValue = {
+        type t
+        external fromBool: bool => t = "%identity"
+        external fromStr: string => t = "%identity"
+        external fromNumber: float => t = "%identity"
+    }
 
     type rec checkboxProps<'a, 'v> = {
         prefixCls?: string,
@@ -56,16 +58,18 @@ module Group = {
 
     type optionType<'v> = {
         label: React.element,
-        value: optionValue,
+        value: OptionValue.t,
         style?: ReactDOM.style,
         disabled?: bool,
         onChange?: changeEvent<'v> => ()
     }
 
-    type options
-    external fromNumber: float => options = "%identity"
-    external fromString: string => options = "%identity"
-    external fromOptionType: optionType<'v> => options = "%identity"
+    module Options = {
+        type t
+        external fromNumber: float => t = "%identity"
+        external fromString: string => t = "%identity"
+        external fromOptionType: optionType<'v> => t = "%identity"
+    }
 
     @react.component @module("antd") @scope("Checkbox")
     external make: (
@@ -73,7 +77,7 @@ module Group = {
         ~defaultValue: array<string>=?,
         ~disabled: bool=?,
         ~name: string=?,
-        ~options: array<options>=?,
+        ~options: array<Options.t>=?,
         ~className: string=?,
     ) => React.element = "Group"
 }

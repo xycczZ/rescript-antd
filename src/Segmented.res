@@ -6,9 +6,11 @@ type optionsConfig = {
     className?: string,
 }
 
-type options
-external fromStr: string => options = "%identity"
-external fromConfig: optionsConfig => options = "%identity"
+module Options = {
+    type t
+    external fromStr: string => t = "%identity"
+    external fromConfig: optionsConfig => t = "%identity"
+}
 
 @react.component @module("antd")
 external make: (
@@ -17,7 +19,7 @@ external make: (
     ~defaultValue: string=?,
     ~disabled: bool=?,
     ~onChange: string => ()=?,
-    ~options: array<options>,
+    ~options: array<Options.t>,
     ~size: [#large |#middle |#small]=?,
     ~value: string=?,
 ) => React.element = "Segmented"

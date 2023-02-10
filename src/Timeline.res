@@ -1,13 +1,15 @@
-type pending
-external fromBool: bool => pending = "%identity"
-external fromEl: React.element => pending = "%identity"
+module Pending = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromEl: React.element => t = "%identity"
+}
 
 @react.component @module("antd")
 external make: (
     ~className: string=?,
     ~children: React.element,
     ~mode: [#left |#alternate |#right]=?,
-    ~pending: pending=?,
+    ~pending: Pending.t=?,
     ~pendingDot: React.element=?,
     ~reverse: bool=?,
 ) => React.element = "Timeline"

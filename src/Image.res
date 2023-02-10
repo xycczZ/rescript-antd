@@ -1,6 +1,8 @@
-type placeholder
-external fromTrue: bool => placeholder = "%identity"
-external fromEl: React.element => placeholder = "%identity"
+module Placeholder = {
+    type t
+    external fromTrue: bool => t = "%identity"
+    external fromEl: React.element => t = "%identity"
+}
 
 type previewConfig = {
     visible?: bool,
@@ -14,9 +16,11 @@ type previewConfig = {
     scaleStep?: int,
     forceRender?: bool,
 }
-type preview
-external fromFalse: bool => preview = "%identity"
-external fromConfig: previewConfig => preview = "%identity"
+module Preview = {
+    type t
+    external fromFalse: bool => t = "%identity"
+    external fromConfig: previewConfig => t = "%identity"
+}
 
 @react.component @module("antd")
 external make: (
@@ -24,8 +28,8 @@ external make: (
     ~alt: string=?,
     ~fallback: string=?,
     ~height: string=?,
-    ~placeholder: placeholder=?,
-    ~preview: preview=?,
+    ~placeholder: Placeholder.t=?,
+    ~preview: Preview.t=?,
     ~src: string=?,
     ~width: string=?,
     ~onError: ReactEvent.Synthetic.t => ()=?,
@@ -48,7 +52,7 @@ module PreviewGroup = {
         ~className: string=?,
         ~previewPrefixCls: string=?,
         ~icons: icons=?,
-        ~preview: preview=?,
+        ~preview: Preview.t=?,
         ~children: React.element=?,
     ) => React.element = "PreviewGroup"
 }

@@ -2,16 +2,22 @@ type marksInfo = {
     style: ReactDOM.style,
     label: React.element
 }
-type marks
-external fromMap1: Belt.Map.Int.t<React.element> => marks = "%identity"
-external fromMap2: Belt.Map.Int.t<marksInfo> => marks = "%identity"
+
+module Marks = {
+    type t
+    external fromMap1: Belt.Map.Int.t<React.element> => t = "%identity"
+    external fromMap2: Belt.Map.Int.t<marksInfo> => t = "%identity"
+}
 
 type rangeConfig = {
     draggableTrack: bool
 }
-type range
-external fromBool: bool => range = "%identity"
-external fromConfig: rangeConfig => range = "%identity"
+
+module Range = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromConfig: rangeConfig => t = "%identity"
+}
 
 type tooltip<'a> = {
     \"open": bool,
@@ -29,10 +35,10 @@ external make: (
     ~disabled: bool=?,
     ~dots: bool=?,
     ~included: bool=?,
-    ~marks: marks=?,
+    ~marks: Marks.t=?,
     ~max: int=?,
     ~min: int=?,
-    ~range: range=?,
+    ~range: Range.t=?,
     ~reverse: bool=?,
     ~step: Js.null<int>=?,
     ~tooltip: tooltip<'a>=?,

@@ -2,9 +2,11 @@ type destroyTooltipOnHideConfig = {
     keepParent?: bool
 }
 
-type destroyTooltipOnHide
-external fromBool: bool => destroyTooltipOnHide = "%identity"
-external fromConfig: destroyTooltipOnHideConfig => destroyTooltipOnHide = "%identity"
+module DestroyTooltipOnHide = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromConfig: destroyTooltipOnHideConfig => t = "%identity"
+}
 
 @react.component @module("antd")
 external make: (
@@ -29,7 +31,7 @@ external make: (
     ~autoAdjustOverflow: bool=?,
     ~color: string=?,
     ~defaultOpen: bool=?,
-    ~destroyTooltipOnHide: destroyTooltipOnHide=?,
+    ~destroyTooltipOnHide: DestroyTooltipOnHide.t=?,
     ~getPopupContainer: Webapi.Dom.HtmlElement.t => Webapi.Dom.HtmlElement.t=?,
     ~mouseEnterDelay: int=?,
     ~mouseLeaveDelay: int=?,

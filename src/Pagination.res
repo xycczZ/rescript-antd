@@ -2,9 +2,11 @@ type showQuickJumperConfig = {
     goButton: React.element
 }
 
-type showQuickJumper
-external fromBool: bool => showQuickJumper = "%identity"
-external fromConfig: showQuickJumperConfig => showQuickJumper = "%identity"
+module ShowQuickJumper = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromConfig: showQuickJumperConfig => t = "%identity"
+}
 
 type t = {
     current?: int,
@@ -17,7 +19,7 @@ type t = {
     pageSizeOptions?: array<int>,
     responsive?: bool,
     showLessItems?: bool,
-    showQuickJumper?: showQuickJumper,
+    showQuickJumper?: ShowQuickJumper.t,
     showSizeChanger?: bool,
     showTitle?: bool,
     showTotal?: (int, (int, int)) => React.element,
@@ -41,7 +43,7 @@ type tableConfig = {
     pageSizeOptions?: array<int>,
     responsive?: bool,
     showLessItems?: bool,
-    showQuickJumper?: showQuickJumper,
+    showQuickJumper?: ShowQuickJumper.t,
     showSizeChanger?: bool,
     showTitle?: bool,
     showTotal?: (int, (int, int)) => React.element,
@@ -65,7 +67,7 @@ external make: (
     ~pageSizeOptions: array<int>=?,
     ~responsive: bool=?,
     ~showLessItems: bool=?,
-    ~showQuickJumper: showQuickJumper=?,
+    ~showQuickJumper: ShowQuickJumper.t=?,
     ~showSizeChanger: bool=?,
     ~showTitle: bool=?,
     ~showTotal: (int, (int, int)) => React.element=?,

@@ -9,7 +9,7 @@ external make: (
     ~autoAdjustOverflow: bool=?,
     ~color: string=?,
     ~defaultOpen: bool=?,
-    ~destroyTooltipOnHide: Popconfirm.destroyTooltipOnHide=?,
+    ~destroyTooltipOnHide: Popconfirm.DestroyTooltipOnHide.t=?,
     ~getPopupContainer: Webapi.Dom.HtmlElement.t => Webapi.Dom.HtmlElement.t=?,
     ~mouseEnterDelay: int=?,
     ~mouseLeaveDelay: int=?,

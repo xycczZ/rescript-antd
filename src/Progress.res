@@ -9,10 +9,13 @@ type strokeColorConfig = {
     to: string,
     direction: string
 }
-type strokeColor
-external fromStr: string => strokeColor = "%identity"
-external fromArr: array<string> => strokeColor = "%identity"
-external fromConfig: strokeColorConfig => strokeColor = "%identity"
+
+module StrokeColor = {
+    type t
+    external fromStr: string => t = "%identity"
+    external fromArr: array<string> => t = "%identity"
+    external fromConfig: strokeColorConfig => t = "%identity"
+}
 
 type inlineT = {
     format?: (float, float) => React.element,
@@ -25,7 +28,7 @@ type inlineT = {
     \"type"?: [|#line |#circle |#dashboard],
 
     steps?: int,
-    strokeColor?: strokeColor,
+    strokeColor?: StrokeColor.t,
     strokeWidth?: float,
 }
 
@@ -43,7 +46,7 @@ external make: (
 
     // type=line
     ~steps: int=?,
-    ~strokeColor: strokeColor=?,
+    ~strokeColor: StrokeColor.t=?,
     ~strokeWidth: float=?,
 
     // type=circle

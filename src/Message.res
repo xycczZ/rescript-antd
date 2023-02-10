@@ -13,24 +13,27 @@ type argsProps = {
     className?: string,
     onClick?: ReactEvent.Mouse.t => ()
 }
-type jointContent
-external fromEl: React.element => jointContent = "%identity"
-external fromArgs: argsProps => jointContent = "%identity"
+
+module JointContent = {
+    type t
+    external fromEl: React.element => t = "%identity"
+    external fromArgs: argsProps => t = "%identity"
+}
 
 @module("antd") @scope("message") @val
-external info: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool> = "info"
+external info: (~args: JointContent.t, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool> = "info"
 
 @module("antd") @scope("message") @val
-external success: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool> = "success"
+external success: (~args: JointContent.t, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool> = "success"
 
 @module("antd") @scope("message") @val
-external error: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool> = "error"
+external error: (~args: JointContent.t, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool> = "error"
 
 @module("antd") @scope("message") @val
-external warning: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool> = "warning"
+external warning: (~args: JointContent.t, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool> = "warning"
 
 @module("antd") @scope("message") @val
-external loading: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool> = "loading"
+external loading: (~args: JointContent.t, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool> = "loading"
 
 @module("antd") @scope("message") @val
 external start: argsProps => Promise.t<bool> = "open"
@@ -51,11 +54,11 @@ type configOptions = {
 external config: configOptions => () = "config"
 
 type instance = {
-    info: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool>,
-    success: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool>,
-    error: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool>,
-    warning: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool>,
-    loading: (~args: jointContent, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool>,
+    info: (~args: JointContent.t, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool>,
+    success: (~args: JointContent.t, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool>,
+    error: (~args: JointContent.t, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool>,
+    warning: (~args: JointContent.t, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool>,
+    loading: (~args: JointContent.t, ~duration: option<int>=?, ~onClose: option<() => ()>=?, ()) => Promise.t<bool>,
 }
 
 @module("antd") @scope("message") @val

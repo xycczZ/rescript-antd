@@ -1,7 +1,9 @@
-type container
-external fromHtmlEl: Webapi.Dom.HtmlElement.t => container = "%identity"
-external fromHtmlElFn: (() => Webapi.Dom.HtmlElement.t) => container = "%identity"
-external fromBool: bool => container = "%identity"
+module Container = {
+    type t
+    external fromHtmlEl: Webapi.Dom.HtmlElement.t => t = "%identity"
+    external fromHtmlElFn: (() => Webapi.Dom.HtmlElement.t) => t = "%identity"
+    external fromBool: bool => t = "%identity"
+}
 
 @react.component @module("antd")
 external make: (
@@ -19,7 +21,7 @@ external make: (
     ~focusTriggerAfterClose: bool=?, // true,
     ~footer:Js.null<React.element>=?, // 默认是两个确定取消按钮,传null不显示这俩按钮
     ~forceRender: bool=?, // false
-    ~getContainer: container=?, // document.body
+    ~getContainer: Container.t=?, // document.body
     ~keyboard: bool=?, // true
     ~mask: bool=?, // true
     ~maskClosable: bool=?, // true

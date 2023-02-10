@@ -20,9 +20,12 @@ type breakPoint = [
     |#xl
     |#xxl
 ]
-type align
-external fromObj: alignObj => align = "%identity"
-external fromVariant: alignPosition => align = "%identity"
+
+module Align = {
+    type t
+    external fromObj: alignObj => t = "%identity"
+    external fromVariant: alignPosition => t = "%identity"
+}
 
 type gutterObj = {
     xs?: int,
@@ -32,10 +35,13 @@ type gutterObj = {
     xl?: int,
     xxl?: int,
 }
-type gutter
-external fromInt: int => gutter = "%identity"
-external fromObj: gutterObj => gutter = "%identity"
-external fromArr: array<gutterObj> => gutter = "%identity"
+
+module Gutter = {
+    type t
+    external fromInt: int => t = "%identity"
+    external fromObj: gutterObj => t = "%identity"
+    external fromArr: array<gutterObj> => t = "%identity"
+}
 
 type justifyPosition = [
     |#start
@@ -53,16 +59,19 @@ type justifyObj = {
     xl?: justifyPosition,
     xxl?: justifyPosition,
 }
-type justify
-external fromPosition: justifyPosition => justify = "%identity"
-external fromObj: justifyObj => justify = "%identity"
+
+module Justify = {
+    type t
+    external fromPosition: justifyPosition => t = "%identity"
+    external fromObj: justifyObj => t = "%identity"
+}
 
 @react.component @module("antd")
 external make: (
     ~className: string=?,
     ~children: React.element=?,
-    ~align: align=?,
-    ~gutter: gutter=?,
-    ~justify: justify=?,
+    ~align: Align.t=?,
+    ~gutter: Gutter.t=?,
+    ~justify: Justify.t=?,
     ~wrap: bool=?
 ) => React.element = "Row"

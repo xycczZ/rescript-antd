@@ -1,52 +1,64 @@
-type tooltip
-external fromBool: bool => tooltip = "%identity"
-external fromEl: React.element => tooltip = "%identity"
+module TooltipType = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromEl: React.element => t = "%identity"
+}
 
 type copyConfig = {
     text?: string,
     onCopy?: option<ReactEvent.Synthetic.t> => (),
     icon?: React.element,
-    tooltips?: tooltip,
+    tooltips?: TooltipType.t,
     format?: [|#"text/plain" |#"text/html"]
 }
 
-type copyable
-external fromBool: bool => copyable = "%identity"
-external fromCopyConfig: copyConfig => copyable = "%identity"
+module Copyable = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromCopyConfig: copyConfig => t = "%identity"
+}
 
 type autoSizeType = {
     minRows?: int,
     maxRows?: int
 }
 
-type autoSize
-external fromBool: bool => autoSize = "%identity"
-external fromSizeType: autoSizeType => autoSize = "%identity"
+module AutoSize = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromSizeType: autoSizeType => t = "%identity"
+}
 
 type editConfig = {
     text?: string,
     editing?: bool,
     icon?: React.element,
-    tooltip?: tooltip,
+    tooltip?: TooltipType.t,
     onStart?: () => (),
     onChange?: string => (),
     onCancel?: () => (),
     onEnd?: () => (),
     maxLength?: int,
-    autoSize?: autoSize,
+    autoSize?: AutoSize.t,
     triggerType?: array<[|#icon |#text]>,
     enterIcon?: React.element,
 }
-type editable
-external fromBool: bool => editable = "%identity"
-external fromEditConfig: editConfig => editable = "%identity"
 
-type overflowAdjust
-external fromBool: bool => overflowAdjust = "%identity"
-external fromNumber: float => overflowAdjust = "%identity"
+module Editable = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromEditConfig: editConfig => t = "%identity"
+}
+
+module OverflowAdjust = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromNumber: float => t = "%identity"
+}
+
 type overflow = {
-    adjustX?: overflowAdjust,
-    adjustY?: overflowAdjust,
+    adjustX?: OverflowAdjust.t,
+    adjustY?: OverflowAdjust.t,
 }
 
 type alignType = {
@@ -63,9 +75,12 @@ type alignType = {
 type destroyTooltipOnHideConfig = {
     keepParent?: bool
 }
-type destroyTooltipOnHide
-external fromBool: bool => destroyTooltipOnHide = "%identity"
-external fromConfig: destroyTooltipOnHideConfig => destroyTooltipOnHide = "%identity"
+
+module DestroyTooltipOnHide = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromConfig: destroyTooltipOnHideConfig => t = "%identity"
+}
 
 type tooltipPropConfig = {
     title: () => React.element,
@@ -74,7 +89,7 @@ type tooltipPropConfig = {
     autoAdjustOverflow: bool,
     color: string,
     defaultOpen: bool,
-    destroyTooltipOnHide: destroyTooltipOnHide,
+    destroyTooltipOnHide: DestroyTooltipOnHide.t,
     getPopupContainer: Webapi.Dom.HtmlElement.t => Webapi.Dom.HtmlElement.t,
     mouseEnterDelay: float,
     mouseLeaveDelay: float,
@@ -88,10 +103,13 @@ type tooltipPropConfig = {
     zIndex: int,
     onOpenChange: bool => (),
 }
-type tooltipProps
-external fromBool: bool => tooltipProps = "%identity"
-external fromEl: React.element => tooltipProps = "%identity"
-external fromTooltipPropConfig: tooltipPropConfig => tooltipProps = "%identity"
+
+module TooltipProps = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromEl: React.element => t = "%identity"
+    external fromTooltipPropConfig: tooltipPropConfig => t = "%identity"
+}
 
 type ellipsisConfig = {
     rows?: int,
@@ -100,10 +118,13 @@ type ellipsisConfig = {
     symbol?: React.element,
     onExpand?: ReactEvent.Mouse.t => (),
     onEllipsis?: bool => (),
-    tooltop?: tooltipProps
+    tooltop?: TooltipProps.t
 }
-type ellipsis
-external fromBool: bool => ellipsis = "%identity"
+
+module Ellipsis = {
+    type t
+    external fromBool: bool => t = "%identity"
+}
 
 module Text = {
     @react.component @module("antd") @scope("Typography")
@@ -111,11 +132,11 @@ module Text = {
         ~className: string=?,
         ~children: React.element=?,
         ~code: bool=?,
-        ~copyable: copyable=?,
+        ~copyable: Copyable.t=?,
         ~delete: bool=?,
         ~disabled: bool=?,
-        ~editable: editable=?,
-        ~ellipsis: ellipsis=?,
+        ~editable: Editable.t=?,
+        ~ellipsis: Ellipsis.t=?,
         ~keyboard: bool=?,
         ~mark: bool=?,
         ~onClick: ReactEvent.Synthetic.t => ()=?,
@@ -132,11 +153,11 @@ module Title = {
         ~className: string=?,
         ~children: React.element=?,
         ~code: bool=?,
-        ~copyable: copyable=?,
+        ~copyable: Copyable.t=?,
         ~delete: bool=?,
         ~disabled: bool=?,
-        ~editable: editable=?,
-        ~ellipsis: ellipsis=?,
+        ~editable: Editable.t=?,
+        ~ellipsis: Ellipsis.t=?,
         ~keyboard: bool=?,
         ~mark: bool=?,
         ~onClick: ReactEvent.Synthetic.t => ()=?,
@@ -154,11 +175,11 @@ module Paragraph = {
         ~className: string=?,
         ~children: React.element=?,
         ~code: bool=?,
-        ~copyable: copyable=?,
+        ~copyable: Copyable.t=?,
         ~delete: bool=?,
         ~disabled: bool=?,
-        ~editable: editable=?,
-        ~ellipsis: ellipsis=?,
+        ~editable: Editable.t=?,
+        ~ellipsis: Ellipsis.t=?,
         ~keyboard: bool=?,
         ~mark: bool=?,
         ~onClick: ReactEvent.Synthetic.t => ()=?,
@@ -175,10 +196,10 @@ module Link = {
         ~className: string=?,
         ~children: React.element=?,
         ~code: bool=?,
-        ~copyable: copyable=?,
+        ~copyable: Copyable.t=?,
         ~delete: bool=?,
         ~disabled: bool=?,
-        ~editable: editable=?,
+        ~editable: Editable.t=?,
         ~ellipsis: bool=?,
         ~keyboard: bool=?,
         ~mark: bool=?,

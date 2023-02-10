@@ -23,9 +23,12 @@ type paginationTypeConfig = {
     showSizeChanger?: bool,
     showLessItems?: bool,
 }
-type paginationType
-external fromBool: bool => paginationType = "%identity"
-external fromConfig: paginationTypeConfig => paginationType = "%identity"
+
+module PaginationType = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromConfig: paginationTypeConfig => t = "%identity"
+}
 
 type selectAllLabelInfo = {
     selectedCount: int,
@@ -73,7 +76,7 @@ type rec transferListProps<'a> = {
     showSelectAll?: bool,
     selectAllLabel?: selectAllLabelInfo => React.element,
     showRemove?: bool,
-    pagination?: paginationType,
+    pagination?: PaginationType.t,
 } and transferListBodyProps<'a> = {
     filteredItems: array<'a>,
     filteredRenderItems: array<renderedItem<'a>>,
@@ -108,7 +111,7 @@ type rec transferListProps<'a> = {
     showSelectAll?: bool,
     selectAllLabel?: selectAllLabelInfo => React.element,
     showRemove?: bool,
-    pagination?: paginationType,
+    pagination?: PaginationType.t,
 }
 
 type t<'a> = {
@@ -137,7 +140,7 @@ type t<'a> = {
     showSelectAll?: bool,
     selectAllLabels?: array<selectAllLabelInfo => React.element>,
     oneWay?: bool,
-    pagination?: paginationType,
+    pagination?: PaginationType.t,
     status?: [#warning |#error |#""],
 }
 

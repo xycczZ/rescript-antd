@@ -7,19 +7,24 @@ type placement = [
 type animatedConfig = {
     placeholder: bool
 }
-type animated
-external fromBool: bool => animated = "%identity"
-external fromObj: animatedConfig => animated = "%identity"
 
-type target
-external fromEl: Webapi.Dom.HtmlElement.t => target = "%identity"
-external fromFn: (() => Webapi.Dom.HtmlElement.t) => target = "%identity"
-external fromFn2: (() => Js.Null.t<{..}>) => target = "%identity"
-external fromNull: Js.Null.t<{..}> => target = "%identity"
+module Animated = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromObj: animatedConfig => t = "%identity"
+}
+
+module Target = {
+    type t
+    external fromEl: Webapi.Dom.HtmlElement.t => t = "%identity"
+    external fromFn: (() => Webapi.Dom.HtmlElement.t) => t = "%identity"
+    external fromFn2: (() => Js.Null.t<{..}>) => t = "%identity"
+    external fromNull: Js.Null.t<{..}> => t = "%identity"
+}
 
 type step = {
-    arrow?: Menu.arrow,
-    target?: target,
+    arrow?: Menu.Arrow.t,
+    target?: Target.t,
     title: React.element,
     description?: React.element,
     placement?: placement,
@@ -29,8 +34,8 @@ type step = {
 }
 
 type rec stepProp = {
-    arrow?: Menu.arrow,
-    target?: target,
+    arrow?: Menu.Arrow.t,
+    target?: Target.t,
     title: React.element,
     description?: React.element,
     placement?: placement,
@@ -56,7 +61,7 @@ type gap = {
 @react.component @module("antd")
 external make: (
     ~className: string=?,
-    ~arrow: Menu.arrow=?,
+    ~arrow: Menu.Arrow.t=?,
     ~placement: placement=?,
     ~onClose: int => ()=?,
     ~onChange: int => ()=?,
@@ -70,5 +75,5 @@ external make: (
     ~steps: array<step>,
     ~renderPanel: (stepProp, int) => React.element=?,
     ~gap: gap=?,
-    ~animated: animated=?,
+    ~animated: Animated.t=?,
 ) => React.element = "Tour"

@@ -1,6 +1,8 @@
-type dropdownMatchSelectWidth
-external fromBool: bool => dropdownMatchSelectWidth = "%identity"
-external fromNumber: float => dropdownMatchSelectWidth = "%identity"
+module DropdownMatchSelectWidth = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromNumber: float => t = "%identity"
+}
 
 type optionType<'a> = {
     label: React.element,
@@ -9,9 +11,11 @@ type optionType<'a> = {
     disabled?: bool,
 }
 
-type filterOption
-external fromBool: bool => filterOption = "%identity"
-external fromOptionType: ((string, optionType<'a>) => bool) => filterOption = "%identity"
+module FilterOption = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromOptionType: ((string, optionType<'a>) => bool) => t = "%identity"
+}
 
 type customTagProps<'a> = {
     label: React.element,
@@ -34,18 +38,18 @@ external make: (
     ~defaultValue: Js.null<'a>=?,
     ~disabled: bool=?,
     ~popupClassName: string=?,
-    ~dropdownMatchSelectWidth: dropdownMatchSelectWidth=?,
+    ~dropdownMatchSelectWidth: DropdownMatchSelectWidth.t=?,
     ~dropdownRender: React.element => React.element=?,
     ~dropdownStyle: ReactDOM.style=?,
     ~fieldNames: Tree.fieldNames=?,
-    ~filterOption: filterOption=?,
+    ~filterOption: FilterOption.t=?,
     ~filterSort: (optionType<'a>, optionType<'a>) => int=?,
     ~getPopupContainer: () => Webapi.Dom.HtmlElement.t=?,
     ~labelInValue: bool=?,
     ~listHeight: float=?,
     ~loading: bool=?,
-    ~maxTagCount: Cascader.maxTagCount=?,
-    ~maxTagPlaceholder: Cascader.maxTagPlaceholder=?,
+    ~maxTagCount: Cascader.MaxTagCount.t=?,
+    ~maxTagPlaceholder: Cascader.MaxTagPlaceholder.t=?,
     ~maxTagTextLength: int=?,
     ~menuItemSelectedIcon: React.element=?,
     ~mode: [#multiple |#tags]=?,

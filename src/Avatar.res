@@ -5,14 +5,18 @@ type sizeConfig = {
     xl?: int,
     xxl?: int
 }
-type size
-external fromNumber: float => size = "%identity"
-external fromVariant: [#large |#small |#default] => size = "%identity"
-external fromConfig: sizeConfig => size = "%identity"
+module Size = {
+    type t
+    external fromNumber: float => t = "%identity"
+    external fromVariant: [#large |#small |#default] => t = "%identity"
+    external fromConfig: sizeConfig => t = "%identity"
+}
 
-type src
-external fromStr: string => src = "%identity"
-external fromEl: React.element => src = "%identity"
+module Src = {
+    type t
+    external fromStr: string => t = "%identity"
+    external fromEl: React.element => t = "%identity"
+}
 
 @react.component @module("antd")
 external make: (
@@ -20,8 +24,8 @@ external make: (
     ~gap: int=?,
     ~icon: React.element=?,
     ~shape: [|#circle |#square]=?,
-    ~size: size=?,
-    ~src: src=?,
+    ~size: Size.t=?,
+    ~src: Src.t=?,
     ~srcSet: string=?,
     ~draggable: bool=?,
     ~crossOrigin: [|#anonymous |#"use-credentials" |#""]=?,
@@ -37,6 +41,6 @@ module Group = {
         ~maxPopoverPlacement: [#top |#bottom]=?,
         ~maxPopoverTrigger: [#hover |#focus |#click]=?,
         ~maxStyle: ReactDOM.style=?,
-        ~size: size=?,
+        ~size: Size.t=?,
     ) => React.element = "Group"
 }

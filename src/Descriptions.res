@@ -5,16 +5,18 @@ type columnConfig = {
     xl?: int,
     xxl?: int
 }
-type column
-external fromInt: int => column = "%identity"
-external fromConfig: columnConfig => column = "%identity"
+module Column = {
+    type t
+    external fromInt: int => t = "%identity"
+    external fromConfig: columnConfig => t = "%identity"
+}
 
 @react.component @module("antd")
 external make: (
     ~children: React.element,
     ~bordered: bool=?,
     ~colon: bool=?,
-    ~column: column=?,
+    ~column: Column.t=?,
     ~contentStyle: ReactDOM.style=?,
     ~extra: React.element=?,
     ~labelStyle: ReactDOM.style=?,

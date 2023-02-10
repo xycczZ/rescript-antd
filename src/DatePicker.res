@@ -54,9 +54,11 @@ type disabledTimes = {
   disabledSeconds?: (int, int) => array<int>,
 }
 
-type format
-external fromStr: string => format = "%identity"
-external fromFn: ('a => string) => format = "%identity"
+module Format = {
+  type t
+  external fromStr: string => t = "%identity"
+  external fromFn: ('a => string) => t = "%identity"
+}
 
 type sharedTimeProps<'a> = {
   format?: string,
@@ -72,9 +74,12 @@ type sharedTimeProps<'a> = {
   defaultValue?: 'a,
   disabledTime?: 'a => disabledTimes,
 }
-type showTime
-external fromBool: bool => showTime = "%identity"
-external fromSharedTimeProps: sharedTimeProps<'a> => showTime = "%identity"
+
+module ShowTime = {
+  type t
+  external fromBool: bool => t = "%identity"
+  external fromSharedTimeProps: sharedTimeProps<'a> => t = "%identity"
+}
 
 type monthLocale = {
   locale: string,
@@ -111,12 +116,14 @@ type monthLocale = {
   shortMonths?: array<string>,
 }
 
-type overflowField
-external fromBool: bool => overflowField = "%identity"
-external fromNumber: float => overflowField = "%identity"
+module OverflowField = {
+  type t
+  external fromBool: bool => t = "%identity"
+  external fromNumber: float => t = "%identity"
+}
 type overflow = {
-  adjustX?: overflowField,
-  adjustY?: overflowField,
+  adjustX?: OverflowField.t,
+  adjustY?: OverflowField.t,
 }
 
 type alignType = {
@@ -256,10 +263,10 @@ external make: (
   ~defaultPickerValue: 'a=?,
   ~defaultValue: 'a=?,
   ~disabledTime: Js.null<'a> => disabledTimes=?,
-  ~format: format=?,
+  ~format: Format.t=?,
   ~renderExtraFooter: panelMode => React.element=?,
   ~showNow: bool=?,
-  ~showTime: showTime=?,
+  ~showTime: ShowTime.t=?,
   ~defaultValue: 'a=?,
   ~showToday: bool=?,
   ~value: 'a=?,
@@ -325,10 +332,10 @@ module YearPicker = {
     ~defaultPickerValue: 'a=?,
     ~defaultValue: 'a=?,
     ~disabledTime: Js.null<'a> => disabledTimes=?,
-    ~format: format=?,
+    ~format: Format.t=?,
     ~renderExtraFooter: panelMode => React.element=?,
     ~showNow: bool=?,
-    ~showTime: showTime=?,
+    ~showTime: ShowTime.t=?,
     ~defaultValue: 'a=?,
     ~showToday: bool=?,
     ~value: 'a=?,
@@ -395,10 +402,10 @@ module MonthPicker = {
     ~defaultPickerValue: 'a=?,
     ~defaultValue: 'a=?,
     ~disabledTime: Js.null<'a> => disabledTimes=?,
-    ~format: format=?,
+    ~format: Format.t=?,
     ~renderExtraFooter: panelMode => React.element=?,
     ~showNow: bool=?,
-    ~showTime: showTime=?,
+    ~showTime: ShowTime.t=?,
     ~defaultValue: 'a=?,
     ~showToday: bool=?,
     ~value: 'a=?,
@@ -465,10 +472,10 @@ module WeekPicker = {
     ~defaultPickerValue: 'a=?,
     ~defaultValue: 'a=?,
     ~disabledTime: Js.null<'a> => disabledTimes=?,
-    ~format: format=?,
+    ~format: Format.t=?,
     ~renderExtraFooter: panelMode => React.element=?,
     ~showNow: bool=?,
-    ~showTime: showTime=?,
+    ~showTime: ShowTime.t=?,
     ~defaultValue: 'a=?,
     ~showToday: bool=?,
     ~value: 'a=?,
@@ -535,10 +542,10 @@ module TimePicker = {
     ~defaultPickerValue: 'a=?,
     ~defaultValue: 'a=?,
     ~disabledTime: Js.null<'a> => disabledTimes=?,
-    ~format: format=?,
+    ~format: Format.t=?,
     ~renderExtraFooter: panelMode => React.element=?,
     ~showNow: bool=?,
-    ~showTime: showTime=?,
+    ~showTime: ShowTime.t=?,
     ~defaultValue: 'a=?,
     ~showToday: bool=?,
     ~value: 'a=?,
@@ -605,10 +612,10 @@ module QuarterPicker = {
     ~defaultPickerValue: 'a=?,
     ~defaultValue: 'a=?,
     ~disabledTime: Js.null<'a> => disabledTimes=?,
-    ~format: format=?,
+    ~format: Format.t=?,
     ~renderExtraFooter: panelMode => React.element=?,
     ~showNow: bool=?,
-    ~showTime: showTime=?,
+    ~showTime: ShowTime.t=?,
     ~defaultValue: 'a=?,
     ~showToday: bool=?,
     ~value: 'a=?,
@@ -684,7 +691,7 @@ module RangePicker = {
     ~presets: array<presets<'a>>=?,
     ~renderExtraFooter: unit => React.element=?,
     ~separator: React.element=?,
-    ~showTime: showTime=?,
+    ~showTime: ShowTime.t=?,
     ~onCalendarChange: (rangeValue<'a>, (string, string), rangeInfo) => unit=?,
     ~onChange: (rangeValue<'a>, (string, string)) => unit=?,
   ) => React.element = "RangePicker"

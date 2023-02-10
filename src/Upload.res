@@ -9,14 +9,18 @@ type file = {
 }
 external toJsFile: file => Webapi.File.t = "%identity"
 
-type action
-external fromStr: string => action = "%identity"
-external fromFn: (file => string) => action = "%identity"
-external fromAsync: (file => Promise.t<string>) => action = "%identity"
+module Action = {
+    type t
+    external fromStr: string => t = "%identity"
+    external fromFn: (file => string) => t = "%identity"
+    external fromAsync: (file => Promise.t<string>) => t = "%identity"
+}
 
-type beforeUploadResult
-external fromBool: bool => beforeUploadResult = "%identity"
-external fromPromise: Promise.t<file> => beforeUploadResult = "%identity"
+module BeforeUploadResult = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromPromise: Promise.t<file> => t = "%identity"
+}
 
 type uploadProgressEvent = {
     percent?: int,
@@ -73,9 +77,12 @@ type showUploadListConfig<'a, 'b> = {
     removeIcon?: uploadFile<'a, 'b> => React.element,
     downloadIcon?: uploadFile<'a, 'b> => React.element,
 }
-type showUploadList
-external fromBool: bool => showUploadList = "%identity"
-external fromConfig: showUploadListConfig<'a, {..}> => showUploadList = "%identity"
+
+module ShowUploadList = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromConfig: showUploadListConfig<'a, {..}> => t = "%identity"
+}
 
 type changeInfo<'a, 'b> = {
     file: uploadFile<'a, 'b>,
@@ -88,8 +95,8 @@ external make: (
     ~className: string=?,
     ~children: React.element,
     ~accept: string=?,
-    ~action: action=?,
-    ~beforeUpload: (file, array<file>) => beforeUploadResult=?,
+    ~action: Action.t=?,
+    ~beforeUpload: (file, array<file>) => BeforeUploadResult.t=?,
     ~customRequest: customRequest<'a, 'b> => ()=?,
     ~data: file => 'b=?,
     ~defaultFileList: array<uploadFile<'a, {..}>>=?,
@@ -108,7 +115,7 @@ external make: (
     ~openFileDialogOnClick: bool=?,
     ~previewFile: Webapi.Blob.t => Promise.t<string>=?,
     ~progress: Progress.inlineT=?,
-    ~showUploadList: showUploadList=?,
+    ~showUploadList: ShowUploadList.t=?,
     ~withCredentials: bool=?,
     ~onChange: changeInfo<'a, {..}> => ()=?,
     ~onDrop: ReactEvent.Synthetic.t => ()=?,

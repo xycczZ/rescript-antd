@@ -1,5 +1,5 @@
 type t = {
-    arrow?: Menu.arrow,
+    arrow?: Menu.Arrow.t,
     autoFocus?: bool,
     disabled?: bool,
     destroyPopupOnHide?: bool,
@@ -17,7 +17,7 @@ type t = {
 @react.component @module("antd")
 external make: (
   ~children: React.element=?,
-  ~arrow: Menu.arrow=?,
+  ~arrow: Menu.Arrow.t=?,
   ~autoFocus: bool=?,
   ~disabled: bool=?,
   ~destroyPopupOnHide: bool=?,
@@ -37,7 +37,7 @@ module Button = {
     external make: (
         ~children: React.element=?,
         ~buttonsRender: array<React.element> => array<React.element>=?,
-        ~loading: Button.loading=?,
+        ~loading: Button.Loading.t=?,
         ~danger: bool=?,
         ~icon: React.element=?,
         ~size: Button.size=?,

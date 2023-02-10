@@ -7,9 +7,11 @@ type progressDotInfo = {
     description: React.element
 }
 
-type progressDot
-external fromBool: bool => progressDot = "%identity"
-external fromFn: (({..}, progressDotInfo) => React.element) => progressDot = "%identity"
+module ProgressDot = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromFn: (({..}, progressDotInfo) => React.element) => t = "%identity"
+}
 
 type itemRenderInfo = {
     index: int,
@@ -41,7 +43,7 @@ type item = {
     icons?: icons,
     onClick?: ReactEvent.Mouse.t => (),
     onStepClick?: int => (),
-    progressDot?: progressDot,
+    progressDot?: ProgressDot.t,
     stepIcon?: itemRenderInfo,
     render?: React.element => React.element,
 }
@@ -54,7 +56,7 @@ external make: (
     ~initial: int=?,
     ~labelPlacement: [#horizontal |#vertical]=?,
     ~percent: int=?,
-    ~progressDot: progressDot=?,
+    ~progressDot: ProgressDot.t=?,
     ~responsive: bool=?,
     ~size: [#default |#small]=?,
     ~status: [#wait |#process |#finish |#error]=?,

@@ -2,12 +2,18 @@ type controlsConfig = {
     upIcon?: React.element,
     downIcon?: React.element,
 }
-type controls
-external fromBool: bool => controls = "%identity"
-external fromConfig: controlsConfig => controls = "%identity"
 
-type formatterValue
-@send external toString: formatterValue => string = "toString"
+module Controls = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromConfig: controlsConfig => t = "%identity"
+}
+
+module FormatterValue = {
+    type t
+    @send external toString: t => string = "toString"
+}
+
 type formatterInfo = {
     userTyping: bool,
     input: string,
@@ -24,11 +30,11 @@ external make: (
     ~addonBefore: React.element=?,
     ~autoFocus: bool=?,
     ~bordered: bool=?,
-    ~controls: controls=?,
+    ~controls: Controls.t=?,
     ~decimalSeparator: string=?,
     ~defaultValue: float=?,
     ~disabled: bool=?,
-    ~formatter: (formatterValue, formatterInfo) => string=?,
+    ~formatter: (FormatterValue.t, formatterInfo) => string=?,
     ~keyboard: bool=?,
     ~max: float=?,
     ~min: float=?,
@@ -41,7 +47,7 @@ external make: (
     ~step: string=?,
     ~stringMode: bool=?,
     ~value: float=?,
-    ~onChange: Js.null<formatterValue> => ()=?,
+    ~onChange: Js.null<FormatterValue.t> => ()=?,
     ~onPressEnter: ReactEvent.Synthetic.t => ()=?,
     ~onStep: (float, stepInfo) => ()=?,
     ~className: string=?,

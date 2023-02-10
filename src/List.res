@@ -1,9 +1,11 @@
 type paginationConfig = {
     position: [#top |#bottom |#both]
 }
-type pagination
-external fromBool: bool => pagination = "%identity"
-external fromConfig: paginationConfig => pagination = "%identity"
+module Pagination = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromConfig: paginationConfig => t = "%identity"
+}
 
 type grid = {
     column?: int,
@@ -28,9 +30,12 @@ type loadingConfig = {
     indicator?: React.element,
     children?: React.element,
 }
-type loading
-external fromBool: bool => loading = "%identity"
-external fromConfig: loadingConfig => loading = "%identity"
+
+module Loading = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromConfig: loadingConfig => t = "%identity"
+}
 
 type locale = {
     emptyText: React.element
@@ -45,10 +50,10 @@ external make: (
     ~grid: grid=?,
     ~header: React.element=?,
     ~itemLayout: [#vertical]=?,
-    ~loading: loading=?,
+    ~loading: Loading.t=?,
     ~loadMore: React.element=?,
     ~locale: locale=?,
-    ~pagination: pagination=?,
+    ~pagination: Pagination.t=?,
     ~renderItem: ('item, int) => React.element=?,
     ~rowKey: 'item => string=?,
     ~size: [#default |#large |#small]=?,

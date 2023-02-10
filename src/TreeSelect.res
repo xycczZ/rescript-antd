@@ -42,18 +42,23 @@ type fieldNames = {
     children?: string,
 }
 
-type elOrBool
-external fromBool: bool => elOrBool = "%identity"
-external fromEl: React.element => elOrBool = "%identity"
+module ElOrBool = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromEl: React.element => t = "%identity"
+}
 
 type simpleModeConfig = {
     id?: string,
     pId?: string,
     rootPId?: string,
 }
-type simpleMode
-external fromConfig: simpleModeConfig => simpleMode = "%identity"
-external fromBool: bool => simpleMode = "%identity"
+
+module SimpleMode = {
+    type t
+    external fromConfig: simpleModeConfig => t = "%identity"
+    external fromBool: bool => t = "%identity"
+}
 
 type legacyDataNode<'a> = {
     value?: string,
@@ -67,9 +72,11 @@ type legacyDataNode<'a> = {
     props: 'a,
 }
 
-type expandAction
-external fromFalse: bool => expandAction = "%identity"
-external fromVariant: [|#click |#doubleClick] => expandAction = "%identity"
+module ExpandAction = {
+    type t
+    external fromFalse: bool => t = "%identity"
+    external fromVariant: [|#click |#doubleClick] => t = "%identity"
+}
 
 type t<'a, 'b> = {
     className?: string,
@@ -92,11 +99,11 @@ type t<'a, 'b> = {
     treeNodeLabelProp?: string,
     fieldNames?: fieldNames,
     multiple?: bool,
-    treeCheckable?: elOrBool,
+    treeCheckable?: ElOrBool.t,
     treeCheckStrictly?: bool,
     labelInValue?: bool,
     treeData?: array<optionType>,
-    treeDataSimpleMode?: simpleMode,
+    treeDataSimpleMode?: SimpleMode.t,
     loadData?: legacyDataNode<'b> => Promise.t<'b>,
     treeLoadedKeys?: array<string>,
     onTreeLoad?: array<string> => (),
@@ -104,7 +111,7 @@ type t<'a, 'b> = {
     treeExpandedKeys?: array<string>,
     treeDefaultExpandedKeys?: array<string>,
     onTreeExpand?:array<string> => (),
-    treeExpandAction?: expandAction,
+    treeExpandAction?: ExpandAction.t,
     virtual?: bool,
     listHeight?: float,
     listItemHeight?: float,
@@ -119,13 +126,13 @@ type t<'a, 'b> = {
     bordered?: bool,
     disabled?: bool,
     popupClassName?: string,
-    dropdownMatchSelectWidth?: Select.dropdownMatchSelectWidth,
+    dropdownMatchSelectWidth?: Select.DropdownMatchSelectWidth.t,
     dropdownRender?: React.element => React.element,
     dropdownStyle?: ReactDOM.style,
     getPopupContainer?: () => Webapi.Dom.HtmlElement.t,
     loading?: bool,
-    maxTagCount?: Cascader.maxTagCount,
-    maxTagPlaceholder?: Cascader.maxTagPlaceholder,
+    maxTagCount?: Cascader.MaxTagCount.t,
+    maxTagPlaceholder?: Cascader.MaxTagPlaceholder.t,
     notFoundContent?: React.element,
     placeholder?: string,
     placement?: [#bottomLeft |#bottomRight |#topLeft |#topRight],

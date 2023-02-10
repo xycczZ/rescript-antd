@@ -50,21 +50,29 @@ type checkedKeysConfig = {
     checked: array<string>,
     halfChecked: array<string>
 }
-type checkedKeys
-external fromArr: array<string> => checkedKeys = "%identity"
-external fromConfig: checkedKeysConfig => checkedKeys = "%identity"
 
-type icon
-external fromEl: React.element => icon = "%identity"
-external fromFalse: bool => icon = "%identity"
+module CheckedKeys = {
+    type t
+    external fromArr: array<string> => t = "%identity"
+    external fromConfig: checkedKeysConfig => t = "%identity"
+}
+
+module IconType = {
+    type t
+    external fromEl: React.element => t = "%identity"
+    external fromFalse: bool => t = "%identity"
+}
 type draggableConfig = {
-    icon?: icon,
+    icon?: IconType.t,
     nodeDraggable?: node => bool,
 }
-type draggable
-external fromBool: bool => draggable = "%identity"
-external fromFn: (node => bool) => draggable = "%identity"
-external fromConfig: draggableConfig => draggable = "%identity"
+
+module Draggable = {
+    type t
+    external fromBool: bool => t = "%identity"
+    external fromFn: (node => bool) => t = "%identity"
+    external fromConfig: draggableConfig => t = "%identity"
+}
 
 type fieldNames = {
     title?: string,
@@ -72,13 +80,15 @@ type fieldNames = {
     children?: string,
 }
 
-type checkParam
-type checkParamObj = {
-    checked: array<string>,
-    halfChecked: array<string>,
+module CheckParam = {
+    type t
+    type checkParamObj = {
+        checked: array<string>,
+        halfChecked: array<string>,
+    }
+    external toObj: t => checkParamObj = "%identity"
+    external toArr: t => array<string> = "%identity"
 }
-external toObj: checkParam => checkParamObj = "%identity"
-external toArr: checkParam => array<string> = "%identity"
 
 type checkedNodesPosition = {
     node: node,
@@ -146,7 +156,7 @@ external make: (
     ~autoExpandParent: bool=?,
     ~blockNode: bool=?,
     ~checkable: bool=?,
-    ~checkedKeys: checkedKeys=?,
+    ~checkedKeys: CheckedKeys.t=?,
     ~checkStrictly: bool=?,
     ~defaultCheckedKeys: array<string>=?,
     ~defaultExpandAll: bool=?,
@@ -154,7 +164,7 @@ external make: (
     ~defaultExpandParent: bool=?,
     ~defaultSelectedKeys: array<string>=?,
     ~disabled: bool=?,
-    ~draggable: draggable=?,
+    ~draggable: Draggable.t=?,
     ~expandedKeys: array<string>=?,
     ~fieldNames: fieldNames=?,
     ~filterTreeNode: eventNode => bool=?,
@@ -173,7 +183,7 @@ external make: (
     ~titleRender: node => React.element=?,
     ~treeData: array<node>=?,
     ~virtual: bool=?,
-    ~onCheck: (checkParam, checkInfo) => ()=?,
+    ~onCheck: (CheckParam.t, checkInfo) => ()=?,
     ~onSelect: (array<string>, selectInfo) => ()=?,
     ~onLoad: (array<string>, loadInfo) => ()=?,
     ~onMouseEnter: mouseEventInfo => ()=?,
