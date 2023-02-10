@@ -1,6 +1,6 @@
 {
   "name": "rescript-antd",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Provide Rescript bindings for antd",
   "scripts": {
     "build": "rescript build -with-deps",
