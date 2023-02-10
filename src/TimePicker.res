@@ -1,5 +1,6 @@
 @react.component @module("antd")
 external make: (
+  ~className: string=?,
   ~allowClear: bool=?,
   ~autoFocus: bool=?,
   ~bordered: bool=?,
@@ -34,6 +35,7 @@ external make: (
 module RangePicker = {
   @react.component @module("antd") @scope("TimePicker")
   external make: (
+    ~className: string=?,
     ~dropdownClassName: string=?,
     ~allowClear: bool=?,
     ~inputReadOnly: bool=?,

@@ -5,4 +5,5 @@ external make: (
     ~offsetTop: int=?,
     ~target: () => Webapi.Dom.HtmlElement.t=?,
     ~onChange: (option<bool>) => ()=?,
+    ~className: string=?,
 ) => React.element = "Affix"

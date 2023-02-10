@@ -1,5 +1,6 @@
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~children: React.element,
     ~autoFocus: bool=?,
     ~checked: bool=?,
@@ -11,6 +12,7 @@ external make: (
 module Button = {
     @react.component @module("antd") @scope("Radio")
     external make: (
+        ~className: string=?,
         ~children: React.element,
         ~autoFocus: bool=?,
         ~checked: bool=?,
@@ -61,6 +63,7 @@ module Group = {
 
     @react.component @module("antd") @scope("Radio")
     external make: (
+        ~className: string=?,
         ~children: React.element,
         ~value: 'a,
         ~buttonStyle: ReactDOM.style=?,

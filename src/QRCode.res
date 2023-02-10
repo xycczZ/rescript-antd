@@ -1,5 +1,6 @@
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~value: string=?,
     ~icon: string=?,
     ~size: int=?,

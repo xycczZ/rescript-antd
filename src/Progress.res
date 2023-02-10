@@ -31,6 +31,7 @@ type inlineT = {
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~format: (float, float) => React.element=?,
     ~percent: float=?,
     ~showInfo: bool=?,

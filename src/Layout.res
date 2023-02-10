@@ -33,6 +33,7 @@ module Sider = {
         ~zeroWidthTriggerStyle: ReactDOM.style=?,
         ~onBreakpoint: bool => ()=?,
         ~onCollapse: (bool, [|#clickTrigger |#responsive]) => ()=?,
+        ~className: string=?,
     ) => React.element = "Sider"
 }
 
@@ -43,6 +44,7 @@ module Header = {
         ~prefixCls: string=?,
         ~hasSider: bool=?,
         ~style: ReactDOM.style=?,
+        ~className: string=?,
     ) => React.element = "Header"
 }
 
@@ -53,6 +55,7 @@ module Footer = {
         ~prefixCls: string=?,
         ~hasSider: bool=?,
         ~style: ReactDOM.style=?,
+        ~className: string=?,
     ) => React.element = "Footer"
 }
 
@@ -63,5 +66,6 @@ module Content = {
         ~prefixCls: string=?,
         ~hasSider: bool=?,
         ~style: ReactDOM.style=?,
+        ~className: string=?,
     ) => React.element = "Content"
 }

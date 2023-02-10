@@ -19,6 +19,7 @@ external fromObj: colSizeObj => colSize = "%identity"
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~children: React.element=?,
     ~flex: string=?,
     ~offset: int=?,

@@ -41,7 +41,8 @@ external make: (
     ~step: string=?,
     ~stringMode: bool=?,
     ~value: float=?,
-    ~onChange: Js.null<formatterValue> => (),
-    ~onPressEnter: ReactEvent.Synthetic.t => (),
-    ~onStep: (float, stepInfo) => (),
+    ~onChange: Js.null<formatterValue> => ()=?,
+    ~onPressEnter: ReactEvent.Synthetic.t => ()=?,
+    ~onStep: (float, stepInfo) => ()=?,
+    ~className: string=?,
 ) => React.element = "InputNumber"

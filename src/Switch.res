@@ -1,5 +1,6 @@
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~autoFocus: bool=?,
     ~checked: bool=?,
     ~checkedChildren: React.element=?,

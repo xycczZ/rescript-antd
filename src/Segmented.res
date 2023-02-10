@@ -12,6 +12,7 @@ external fromConfig: optionsConfig => options = "%identity"
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~block: bool=?,
     ~defaultValue: string=?,
     ~disabled: bool=?,

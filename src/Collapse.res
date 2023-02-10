@@ -33,5 +33,6 @@ module Panel = {
         ~header: React.element=?,
         ~key: string=?,
         ~showArrow: bool=?,
+        ~className: string=?,
     ) => React.element = "Panel"
 }

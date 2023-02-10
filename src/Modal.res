@@ -5,6 +5,7 @@ external fromBool: bool => container = "%identity"
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~children: React.element=?,
     ~afterClose: () => () = ?,
     ~bodyStyle: ReactDOM.style = ?,

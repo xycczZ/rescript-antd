@@ -98,6 +98,7 @@ type t = {
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~activeKey: string=?,
     ~addIcon: React.element=?,
     ~animated: animated=?,

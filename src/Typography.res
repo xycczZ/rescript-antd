@@ -108,6 +108,7 @@ external fromBool: bool => ellipsis = "%identity"
 module Text = {
     @react.component @module("antd") @scope("Typography")
     external make: (
+        ~className: string=?,
         ~children: React.element=?,
         ~code: bool=?,
         ~copyable: copyable=?,
@@ -128,6 +129,7 @@ module Text = {
 module Title = {
     @react.component @module("antd") @scope("Typography")
     external make: (
+        ~className: string=?,
         ~children: React.element=?,
         ~code: bool=?,
         ~copyable: copyable=?,
@@ -149,6 +151,7 @@ module Title = {
 module Paragraph = {
     @react.component @module("antd") @scope("Typography")
     external make: (
+        ~className: string=?,
         ~children: React.element=?,
         ~code: bool=?,
         ~copyable: copyable=?,
@@ -169,6 +172,7 @@ module Paragraph = {
 module Link = {
     @react.component @module("antd") @scope("Typography")
     external make: (
+        ~className: string=?,
         ~children: React.element=?,
         ~code: bool=?,
         ~copyable: copyable=?,

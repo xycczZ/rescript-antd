@@ -42,4 +42,5 @@ external make: (
     ~onSearch: string => ()=?,
     ~onSelect: (string, componentOption)=>()=?,
     ~onClear: () => ()=?,
+    ~className: string=?,
 ) => React.element = "AutoComplete"

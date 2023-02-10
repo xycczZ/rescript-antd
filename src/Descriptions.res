@@ -21,12 +21,14 @@ external make: (
     ~layout: [#horizontal |#vertical]=?,
     ~size: [#default |#middle |#small]=?,
     ~title: React.element=?,
+    ~className: string=?,
 ) => React.element = "Descriptions"
 
 
 module Item = {
     @react.component @module("antd") @scope("Descriptions")
     external make: (
+        ~className: string=?,
         ~children: React.element,
         ~contentStyle: ReactDOM.style=?,
         ~label: React.element=?,

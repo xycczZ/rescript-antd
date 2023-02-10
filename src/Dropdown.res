@@ -43,5 +43,6 @@ module Button = {
         ~size: Button.size=?,
         ~\"type": Button.buttonType=?,
         ~onClick: ReactEvent.Synthetic.t => ()=?,
+        ~className: string=?,
     ) => React.element = "Button"
 }

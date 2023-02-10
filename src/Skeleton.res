@@ -28,6 +28,7 @@ external fromProp: titleProps => title = "%identity"
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~children: React.element=?,
     ~active: bool=?,
     ~avatar: avatar=?,
@@ -49,6 +50,7 @@ type element = {
 module Button = {
     @react.component @module("antd") @scope("Skeleton")
     external make: (
+        ~className: string=?,
         ~prefixCls: string=?,
         ~className: string=?,
         ~style: ReactDOM.style=?,
@@ -62,6 +64,7 @@ module Button = {
 module Avatar = {
     @react.component @module("antd") @scope("Skeleton")
     external make: (
+        ~className: string=?,
         ~prefixCls: string=?,
         ~className: string=?,
         ~style: ReactDOM.style=?,
@@ -74,6 +77,7 @@ module Avatar = {
 module Input = {
     @react.component @module("antd") @scope("Skeleton")
     external make: (
+        ~className: string=?,
         ~prefixCls: string=?,
         ~className: string=?,
         ~style: ReactDOM.style=?,
@@ -87,6 +91,7 @@ module Input = {
 module Image = {
     @react.component @module("antd") @scope("Skeleton")
     external make: (
+        ~className: string=?,
         ~prefixCls: string=?,
         ~className: string=?,
         ~style: ReactDOM.style=?,
@@ -99,6 +104,7 @@ module Image = {
 module Node = {
     @react.component @module("antd") @scope("Skeleton")
     external make: (
+        ~className: string=?,
         ~prefixCls: string=?,
         ~className: string=?,
         ~style: ReactDOM.style=?,

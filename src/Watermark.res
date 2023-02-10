@@ -12,6 +12,7 @@ type font = {
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~children: React.element,
     ~width: int=?,
     ~height: int=?,

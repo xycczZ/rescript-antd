@@ -141,6 +141,7 @@ type expandEventInfo = {
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~allowDrop: allowDropOptions => bool=?,
     ~autoExpandParent: bool=?,
     ~blockNode: bool=?,

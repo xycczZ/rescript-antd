@@ -15,6 +15,7 @@ type rec t = {
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~allowClear: bool=?,
     ~allowHalf: bool=?,
     ~autoFocus: bool=?,

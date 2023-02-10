@@ -21,5 +21,6 @@ external make: (
     ~trigger: array<[|#hover |#focus |#click |#contextMenu]>=?,
     ~\"open": bool=?,
     ~zIndex: int=?,
-    ~onOpenChange: bool => ()=?
+    ~onOpenChange: bool => ()=?,
+    ~className: string=?,
 ) => React.element = "Popover"

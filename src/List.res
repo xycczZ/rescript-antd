@@ -53,6 +53,7 @@ external make: (
     ~rowKey: 'item => string=?,
     ~size: [#default |#large |#small]=?,
     ~split: bool=?,
+    ~className: string=?,
 ) => React.element = "List"
 
 module Item = {
@@ -61,6 +62,7 @@ module Item = {
         ~children: React.element,
         ~actions: array<React.element>=?,
         ~extra: React.element=?,
+        ~className: string=?,
     ) => React.element = "Item"
 
     module Meta = {
@@ -70,6 +72,7 @@ module Item = {
             ~avatar: React.element=?,
             ~description: React.element=?,
             ~title: React.element=?,
+            ~className: string=?,
         ) => React.element = "Meta"
     }
 }

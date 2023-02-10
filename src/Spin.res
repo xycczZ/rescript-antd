@@ -9,6 +9,7 @@ type t = {
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~children: React.element=?,
     ~delay: int=?,
     ~indicator: React.element=?,

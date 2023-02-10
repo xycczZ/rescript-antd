@@ -45,4 +45,5 @@ external make: (
     ~width: string=?,
     ~zIndex: int=?,
     ~onClose: ReactEvent.Synthetic.t => ()=?,
+    ~className: string=?,
 ) => React.element = "Drawer"

@@ -23,6 +23,7 @@ external make: (
     ~title: React.element=?,
     ~\"type": string=?,
     ~onTabChange: string => ()=?,
+    ~className: string=?,
 ) => React.element = "Card"
 
 module Grid = {

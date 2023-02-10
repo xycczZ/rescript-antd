@@ -16,6 +16,7 @@ external make: (
     ~disabled: bool=?,
     ~indeterminate: bool=?,
     ~onChange: {..} => ()=?,
+    ~className: string=?,
 ) => React.element = "Checkbox"
 
 module Group = {
@@ -73,5 +74,6 @@ module Group = {
         ~disabled: bool=?,
         ~name: string=?,
         ~options: array<options>=?,
+        ~className: string=?,
     ) => React.element = "Group"
 }

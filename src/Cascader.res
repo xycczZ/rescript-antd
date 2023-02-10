@@ -47,6 +47,7 @@ external fromConfig: showSearchConfig => showSearch = "%identity"
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~allowClear: bool=?,
     ~autoFocus: bool=?,
     ~bordered: bool=?,

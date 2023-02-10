@@ -55,6 +55,7 @@ type gap = {
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~arrow: Menu.arrow=?,
     ~placement: placement=?,
     ~onClose: int => ()=?,

@@ -9,6 +9,7 @@ type headerRenderConfig<'a> = {
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~dateCellRender: 'a => React.element=?,
     ~dateFullCellRender: 'a => React.element=?,
     ~defaultValue: 'a=?,

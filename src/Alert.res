@@ -12,6 +12,7 @@ external make: (
     ~showIcon: bool=?,
     ~\"type": [#success |#info |#warning |#error]=?,
     ~onClose: ReactEvent.Mouse.t => ()=?,
+    ~className: string=?,
 ) => React.element = "Alert"
 
 module ErrorBoundary = {

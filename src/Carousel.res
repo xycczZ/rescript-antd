@@ -15,4 +15,5 @@ external make: (
     ~effect: [#scrollx |#fade]=?,
     ~afterChange: int => ()=?,
     ~beforeChange: (int, int) => ()=?,
+    ~className: string=?,
 ) => React.element = "Carousel"

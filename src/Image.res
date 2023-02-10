@@ -20,6 +20,7 @@ external fromConfig: previewConfig => preview = "%identity"
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~alt: string=?,
     ~fallback: string=?,
     ~height: string=?,
@@ -44,6 +45,7 @@ module PreviewGroup = {
 
     @react.component @module("antd") @scope("Image")
     external make: (
+        ~className: string=?,
         ~previewPrefixCls: string=?,
         ~icons: icons=?,
         ~preview: preview=?,

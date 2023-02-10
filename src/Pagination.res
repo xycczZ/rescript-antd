@@ -54,6 +54,7 @@ type tableConfig = {
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~current: int=?,
     ~defaultCurrent: int=?,
     ~defaultPageSize: int=?,

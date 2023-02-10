@@ -85,6 +85,7 @@ type changeInfo<'a, 'b> = {
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~children: React.element,
     ~accept: string=?,
     ~action: action=?,

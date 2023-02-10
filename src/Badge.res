@@ -11,6 +11,7 @@ external make: (
     ~status: [#success |#processing |#default |#error |#warning]=?,
     ~text: React.element=?,
     ~title: string=?,
+    ~className: string=?,
 ) => React.element = "Badge"
 
 module Ribbon = {

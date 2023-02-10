@@ -160,6 +160,7 @@ type validateErrorEntity<'a> = {
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~children: React.element=?,
     ~colon: bool=?, // true
     ~disabled: bool=?, // false,
@@ -254,6 +255,7 @@ module Item = {
 
     @react.component @module("antd") @scope("Form")
     external make: (
+        ~className: string=?,
         ~children: React.element=?,
         ~colon: bool=?,
         ~dependencies: array<NamePath.t>=?,
@@ -319,12 +321,14 @@ module List = {
         ~name: NamePath.t,
         ~rules: array<rule>=?,
         ~initialValue: array<'a>=?,
+        ~className: string=?,
     ) => React.element = "List"
 }
 
 module ErrorList = {
     @react.component @module("antd") @scope("Form")
     external make: (
+        ~className: string=?,
         ~fieldId: string=?,
         ~help: React.element=?,
         ~helpStatus: validateStatuses=?,
@@ -348,6 +352,7 @@ module Provider = {
 
     @react.component @module("antd") @scope("Form")
     external make: (
+        ~className: string=?,
         ~validateMessages: ValidateMessage.t=?,
         ~onFormChange: (string, formChangeInfo<{..}>) => ()=?,
         ~onFormFinish: (string, formFinishInfo<{..}>) => ()=?,

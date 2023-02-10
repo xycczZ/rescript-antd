@@ -23,6 +23,7 @@ type buttonType = [
 
 module ButtonProps = {
     type t = {
+        className?: string,
         block?: bool,
         danger?: bool,
         disabled?: bool,
@@ -43,6 +44,7 @@ module ButtonProps = {
     }
 
     let new = (
+        ~className: option<string>=?,
         ~block: option<bool>=?,
         ~danger: option<bool>=?,
         ~disabled: option<bool>=?,
@@ -68,6 +70,7 @@ module ButtonProps = {
         ~onClick: option<ReactEvent.Mouse.t => ()>=?,
         ()
     ): t => {
+        className: ?className,
         block: ?block,
         danger: ?danger,
         disabled: ?disabled,
@@ -86,6 +89,7 @@ module ButtonProps = {
 
 @react.component @module("antd")
 external make: (
+        ~className: string=?,
         ~block: bool=?,
         ~danger: bool=?,
         ~disabled: bool=?,

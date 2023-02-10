@@ -26,6 +26,7 @@ module ShowCount = {
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~addonAfter: React.element=?,
     ~addonBefore: React.element=?,
     ~allowClear: AllowClear.t=?,
@@ -54,6 +55,7 @@ module TextArea = {
 
   @react.component @module("antd") @scope("Input")
   external make: (
+    ~className: string=?,
     ~allowClear: bool=?,
     ~autoSize: AutoSize.t = ?,
     ~bordered: bool=?,
@@ -75,6 +77,7 @@ module Search = {
 
     @react.component @module("antd") @scope("Input")
     external make: (
+        ~className: string=?,
         ~enterButton: EnterButton.t=?,
         ~loading: bool=?,
         ~onSearch: (string, ReactEvent.Synthetic.t) => (),
@@ -84,6 +87,7 @@ module Search = {
 module Group = {
     @react.component @module("antd") @scope("Input")
     external make: (
+        ~className: string=?,
         ~children: React.element=?,
         ~compact: bool=?,
         ~size: [
@@ -107,6 +111,7 @@ module Password = {
 
     @react.component @module("antd") @scope("Input")
     external make: (
+        ~className: string=?,
         ~iconRender: bool => React.element = ?,
         ~visibilityToggle: VisibilityToggle.t = ?,
     ) => React.element = "Password"

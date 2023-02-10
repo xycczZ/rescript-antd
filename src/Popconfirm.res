@@ -8,6 +8,7 @@ external fromConfig: destroyTooltipOnHideConfig => destroyTooltipOnHide = "%iden
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~children: React.element=?,
     ~cancelButtonProps: Button.ButtonProps.t=?,
     ~cancelText: string=?,

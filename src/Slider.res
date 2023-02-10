@@ -23,6 +23,7 @@ type tooltip<'a> = {
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~allowClear: bool=?,
     ~defaultValue: 'a=?, // float or (float, float)
     ~disabled: bool=?,

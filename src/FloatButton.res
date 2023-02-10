@@ -41,5 +41,6 @@ module BackTop = {
         ~target: () => Webapi.Dom.HtmlElement.t=?,
         ~visibilityHeight: int=?,
         ~onClick: () => ()=?,
+        ~className: string=?,
     ) => React.element = "BackTop"
 }

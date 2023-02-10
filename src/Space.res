@@ -11,6 +11,7 @@ type direction = [#vertical |#horizontal]
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~children: React.element=?,
     ~align: [#start |#end |#center |#baseline]=?,
     ~direction: direction=?,
@@ -21,6 +22,7 @@ external make: (
 module Compact = {
     @react.component @module("antd") @scope("Space")
     external make: (
+        ~className: string=?,
         ~children: React.element=?,
         ~block: bool=?,
         ~direction: direction=?,

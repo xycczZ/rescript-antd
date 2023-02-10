@@ -11,6 +11,7 @@ external fromFn: ((string, t) => React.element) => formatter = "%identity"
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~formatter: formatter=?,
     ~decimalSeparator: string=?,
     ~groupSeparator: string=?,
@@ -27,6 +28,7 @@ external make: (
 module Countdown = {
     @react.component @module("antd") @scope("Statistic")
     external make: (
+        ~className: string=?,
         ~format: string=?,
         ~prefix: React.element=?,
         ~suffix: React.element=?,

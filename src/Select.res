@@ -23,6 +23,7 @@ type customTagProps<'a> = {
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~allowClear: bool=?,
     ~autoClearSearchValue: bool=?,
     ~autoFocus: bool=?,

@@ -241,6 +241,7 @@ type currentDataSource<'a> = {
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~children: React.element=?,
     ~bordered: bool=?,
     ~columns: array<column<'a>>=?,
@@ -272,6 +273,7 @@ external make: (
 module Column = {
     @react.component @module("antd") @scope("Table")
     external make: (
+        ~className: string=?,
         ~align: [#left |#right |#center]=?,
         ~className: string=?,
         ~colSpan: int=?,
@@ -311,6 +313,7 @@ module Column = {
 module ColumnGroup = {
     @react.component @module("antd") @scope("Table")
     external make: (
+        ~className: string=?,
         ~children: React.element,
         ~align: [#left |#right |#center]=?,
         ~className: string=?,
@@ -355,6 +358,7 @@ module Summary = {
 
     @react.component @module("antd") @scope("Table")
     external make: (
+        ~className: string=?,
         ~children: React.element=?,
         ~fixed: fixed=?,
     ) => React.element = "Summary"

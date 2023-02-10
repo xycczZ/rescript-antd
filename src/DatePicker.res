@@ -202,6 +202,7 @@ type alignType = {
 
 @react.component @module("antd")
 external make: (
+  ~className: string=?,
   ~dropdownClassName: string=?,
   ~allowClear: bool=?,
   ~inputReadOnly: bool=?,
@@ -270,6 +271,7 @@ external make: (
 module YearPicker = {
   @react.component @module("antd") @scope("DatePicker")
   external make: (
+    ~className: string=?,
     ~dropdownClassName: string=?,
     ~allowClear: bool=?,
     ~inputReadOnly: bool=?,
@@ -339,6 +341,7 @@ module YearPicker = {
 module MonthPicker = {
   @react.component @module("antd") @scope("DatePicker")
   external make: (
+    ~className: string=?,
     ~dropdownClassName: string=?,
     ~allowClear: bool=?,
     ~inputReadOnly: bool=?,
@@ -408,6 +411,7 @@ module MonthPicker = {
 module WeekPicker = {
   @react.component @module("antd") @scope("DatePicker")
   external make: (
+    ~className: string=?,
     ~dropdownClassName: string=?,
     ~allowClear: bool=?,
     ~inputReadOnly: bool=?,
@@ -477,6 +481,7 @@ module WeekPicker = {
 module TimePicker = {
   @react.component @module("antd") @scope("DatePicker")
   external make: (
+    ~className: string=?,
     ~dropdownClassName: string=?,
     ~allowClear: bool=?,
     ~inputReadOnly: bool=?,
@@ -546,6 +551,7 @@ module TimePicker = {
 module QuarterPicker = {
   @react.component @module("antd") @scope("DatePicker")
   external make: (
+    ~className: string=?,
     ~dropdownClassName: string=?,
     ~allowClear: bool=?,
     ~inputReadOnly: bool=?,
@@ -619,6 +625,7 @@ module RangePicker = {
 
   @react.component @module("antd") @scope("DatePicker")
   external make: (
+    ~className: string=?,
     ~dropdownClassName: string=?,
     ~allowClear: bool=?,
     ~inputReadOnly: bool=?,

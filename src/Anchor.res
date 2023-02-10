@@ -29,6 +29,7 @@ external make: (
     ~onChange: string => ()=?,
     ~onClick: (ReactEvent.Mouse.t, linkParam) => ()=?,
     ~items: array<anchorLinkItemProps>=?,
+    ~className: string=?,
 ) => React.element = "Anchor"
 
 module Link = {

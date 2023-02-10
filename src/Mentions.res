@@ -90,4 +90,5 @@ external make: (
     ~\"open": bool=?,
     ~options: array<dataDrivenOptionProps>=?,
     ~onResize: sizeInfo => ()=?,
+    ~className: string=?,
 ) => React.element = "Mentions"

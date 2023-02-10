@@ -26,6 +26,7 @@ external make: (
     ~draggable: bool=?,
     ~crossOrigin: [|#anonymous |#"use-credentials" |#""]=?,
     ~onError: () => bool=?,
+    ~className: string=?,
 ) => React.element = "Avatar"
 
 module Group = {

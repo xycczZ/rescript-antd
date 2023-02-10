@@ -97,6 +97,7 @@ external fromArrowConfig: arrowConfig => arrow = "%identity"
 
 @react.component @module("antd")
 external make: (
+  ~className: string=?,
   ~defaultOpenKeys: array<string>=?,
   ~defaultSelectedKeys: array<string>=?,
   ~expandIcon: expandIcon=?,

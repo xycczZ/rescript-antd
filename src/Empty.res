@@ -4,4 +4,5 @@ external make: (
     ~description: React.element=?,
     ~image: React.element=?,
     ~imageStyle: ReactDOM.style=?,
+    ~className: string=?,
 ) => React.element = "Empty"

@@ -1,5 +1,6 @@
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~children: React.element,
     ~closable: bool=?,
     ~closeIcon: React.element=?,
@@ -11,6 +12,7 @@ external make: (
 module CheckableTag = {
     @react.component @module("antd") @scope("Tag")
     external make: (
+        ~className: string=?,
         ~children: React.element,
         ~checked: bool=?,
         ~onChange: bool => ()=?,

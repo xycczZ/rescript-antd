@@ -4,6 +4,7 @@ external fromEl: React.element => pending = "%identity"
 
 @react.component @module("antd")
 external make: (
+    ~className: string=?,
     ~children: React.element,
     ~mode: [#left |#alternate |#right]=?,
     ~pending: pending=?,
@@ -14,6 +15,7 @@ external make: (
 module Item = {
     @react.component @module("antd") @scope("Timeline")
     external make: (
+        ~className: string=?,
         ~children: React.element,
         ~color: string=?,
         ~dot: React.element=?,

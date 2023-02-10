@@ -72,6 +72,7 @@ external fromFalse: bool => expandAction = "%identity"
 external fromVariant: [|#click |#doubleClick] => expandAction = "%identity"
 
 type t<'a, 'b> = {
+    className?: string,
     prefixCls?: string,
     id?: string,
     value?: 'a,
