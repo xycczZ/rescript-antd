@@ -175,8 +175,8 @@ external make: (
     ~colon: bool=?, // true
     ~disabled: bool=?, // false,
     ~component: ComponentOption.t=?,
-    ~fields: array<fieldData<{..}>>=?,
-    ~form: formInstance<{..}>=?,
+    ~fields: array<fieldData<'a>>=?,
+    ~form: formInstance<'a>=?,
     ~initialValues: 'a=?,
     ~labelAlign: [
         |#left
@@ -201,11 +201,11 @@ external make: (
     ~validateMessages: ValidateMessage.t=?,
     ~validateTrigger: array<string>=?,
     ~wrapperCol: Col.t=?,
-    ~onFieldsChange: (array<fieldData<{..}>>, array<fieldData<{..}>>) => ()=?, // changedFields => allFields => ()
+    ~onFieldsChange: (array<fieldData<'a>>, array<fieldData<'a>>) => ()=?, // changedFields => allFields => ()
     ~onFinish: {..} => ()=?, // values => ()
     // {values, errorFields, outOfDate} => ()
-    ~onFinishFailed: validateErrorEntity<{..}> => ()=?,
-    ~onValuesChange: ({..}, {..}) => ()=?, // changedValues => allValues => ()
+    ~onFinishFailed: validateErrorEntity<'a> => ()=?,
+    ~onValuesChange: ('a, 'a) => ()=?, // changedValues => allValues => ()
 ) => React.element = "Form"
 
 type types = [
@@ -228,22 +228,22 @@ type types = [
 module Rule = {
     type t
     type ruleConfig<'a> = {
-    defaultField?: t,
-    enum?: array<'a>,
-    fields?: Js.Dict.t<t>,
-    len?: int,
-    max?: int,
-    message?: string,
-    min?: int,
-    pattern?: Js.Re.t,
-    required?: bool,
-    transform?: 'a => 'a,
-    \"type"?: types,
-    validateTrigger?: array<string>,
-    validator?: (t, 'a) => Promise.t<bool>,
-    warningOnly?: bool,
-    whitespace?: bool
-}
+        defaultField?: t,
+        enum?: array<'a>,
+        fields?: Js.Dict.t<t>,
+        len?: int,
+        max?: int,
+        message?: string,
+        min?: int,
+        pattern?: Js.Re.t,
+        required?: bool,
+        transform?: 'a => 'a,
+        \"type"?: types,
+        validateTrigger?: array<string>,
+        validator?: (t, 'a) => Promise.t<bool>,
+        warningOnly?: bool,
+        whitespace?: bool
+    }
     external fromRuleConfig: ruleConfig<'a> => t = "%identity"
     external fromFunc: (formInstance<'a> => ruleConfig<'a>) => t = "%identity"
 }
@@ -376,3 +376,18 @@ module Provider = {
         ~children: React.element=?,
     ) => React.element = "Provider"
 }
+
+@module("antd") @scope("Form") @val
+external useForm: () => (formInstance<'a>, _) = "useForm"
+
+@module("antd") @scope("Form") @val
+external useFormInstance: () => formInstance<'a> = "useFormInstance"
+
+@module("antd") @scope("Form") @val
+external useWatch: (~namePath: NamePath.t, ~formInstance: formInstance<'a>) => 'b = "useWatch"
+
+type itemStatus = {
+    status: Js.undefined<validateStatuses>
+}
+@module("antd") @scope("Form/Item") @val
+external useStatus: () => itemStatus = "useStatus"
