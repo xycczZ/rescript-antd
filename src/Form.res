@@ -64,24 +64,24 @@ type fieldError = {
 }
 
 type formInstance<'a> = {
-    getFieldInstance?: NamePath.t => 'a,
-    scrollToField?: (NamePath.t, option<scrollOptions>) => (),
+    getFieldInstance: NamePath.t => 'a,
+    scrollToField: (NamePath.t, option<scrollOptions>) => (),
 
-    getFieldError?: NamePath.t => array<string>,
-    getFieldWarning?: NamePath.t => array<string>,
-    getFieldsError?: array<NamePath.t> => array<fieldError>,
-    getFieldsValue?: (option<array<NamePath.t>>, option<filterFuncParam => bool>) => 'a,
-    getFieldValue?: NamePath.t => 'a,
-    isFieldsTouched?: (option<array<NamePath.t>>, option<bool>) => bool,
-    isFieldTouched?: NamePath.t => bool,
-    isFieldValidating?: NamePath.t => bool,
-    isFieldsValidating?: array<NamePath.t> => bool,
-    resetFields?: option<array<NamePath.t>> => (),
-    setFields?: array<fieldData<'a>> => (),
-    setFieldValue?: (NamePath.t, 'a) => (),
-    setFieldsValue?: 'a => (),
-    submit?: () => (),
-    validateFields?: option<array<NamePath.t>> => Promise.t<'a>
+    getFieldError: NamePath.t => array<string>,
+    getFieldWarning: NamePath.t => array<string>,
+    getFieldsError: array<NamePath.t> => array<fieldError>,
+    getFieldsValue: (option<array<NamePath.t>>, option<filterFuncParam => bool>) => 'a,
+    getFieldValue: NamePath.t => 'a,
+    isFieldsTouched: (option<array<NamePath.t>>, option<bool>) => bool,
+    isFieldTouched: NamePath.t => bool,
+    isFieldValidating: NamePath.t => bool,
+    isFieldsValidating: array<NamePath.t> => bool,
+    resetFields: option<array<NamePath.t>> => (),
+    setFields: array<fieldData<'a>> => (),
+    setFieldValue: (NamePath.t, 'a) => (),
+    setFieldsValue: 'a => (),
+    submit: () => (),
+    validateFields: option<array<NamePath.t>> => Promise.t<'a>
 }
 
 module ValidateMessage = {
@@ -202,7 +202,7 @@ external make: (
     ~validateTrigger: array<string>=?,
     ~wrapperCol: Col.t=?,
     ~onFieldsChange: (array<fieldData<'a>>, array<fieldData<'a>>) => ()=?, // changedFields => allFields => ()
-    ~onFinish: {..} => ()=?, // values => ()
+    ~onFinish: 'a => ()=?, // values => ()
     // {values, errorFields, outOfDate} => ()
     ~onFinishFailed: validateErrorEntity<'a> => ()=?,
     ~onValuesChange: ('a, 'a) => ()=?, // changedValues => allValues => ()

@@ -44,6 +44,10 @@ external make: (
     ~value: string=?,
     ~onChange: ReactEvent.Synthetic.t => ()=?,
     ~onPressEnter: ReactEvent.Synthetic.t => () = ?,
+
+    ~autoComplete: [|#on |#off]=?,
+    ~onBlur: ReactEvent.Focus.t => ()=?,
+    ~onFocus: ReactEvent.Focus.t => ()=?,
 ) => React.element = "Input"
 
 module TextArea = {
